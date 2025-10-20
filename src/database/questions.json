@@ -1,0 +1,858 @@
+[
+    {
+        "id":1,
+        "question": "Do you find yourself thinking about which site you will end up at and who will be the lurker before the barriers go down?",
+        "scale":[1,2,3,4,5],
+        "options":[
+            {"rightlabel": "Yes", "trait": "Brain"},
+            {"leftlabel": "No", "trait": "Aim"}
+        ],
+        "codename": "Big Brain",
+        "save_codename_on": "Yes"
+    },
+    {
+    "id": 2,
+    "question": "Do you find yourself just going for duels while telling yourself you can just aim diff the opponents?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "BRAIN" },
+      { "rightlabel": "Yes", "trait": "AIM" }
+    ],
+    "codename": "AIMER",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 3,
+    "question": "Do you find yourself picking up a scoped gun more than often and can’t help yourself peeking mid with it?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "BRAIN" },
+      { "rightlabel": "Yes", "trait": "AIM" }
+    ],
+    "codename": "SNIPER",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 4,
+    "question": "Are you mostly telling your team to fall back after planting the spike while they go for fights and you are the last one remaining, hoping to clutch the round?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "AIM" },
+      { "rightlabel": "Yes", "trait": "BRAIN" }
+    ],
+    "codename": "CLUTCHER",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 5,
+    "question": "Do you constantly change roles and agents every match telling yourself that you are like Forsaken?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "BRAIN" },
+      { "rightlabel": "Yes", "trait": "AIM" }
+    ],
+    "codename": "FLEX",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 6,
+    "question": "Does your team ignore all your calls and mid-round directions and just runs into a site without clearing the corners first and then blame the last person alive?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "AIM" },
+      { "rightlabel": "Yes", "trait": "BRAIN" }
+    ],
+    "codename": "IGL",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 7,
+    "question": "Do you often find yourself in fights where you are holding a piece of util in your hand because you want to help your teammates or your duelist asked for it?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "AIM" },
+      { "rightlabel": "Yes", "trait": "BRAIN" }
+    ],
+    "codename": "UTIL",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 8,
+    "question": "Do your gun jumps to the sky after the first 4 bullets and you have to pull out your knife in a fight to adjust the recoil?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "AIM" },
+      { "rightlabel": "Yes", "trait": "BRAIN" }
+    ],
+    "codename": "UNSTABLE",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 9,
+    "question": "Have you spent a considerable amount of time going through VCT VODS and various tutorial websites to build a perfect comp only for your team to instalock 4 duelist?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "AIM" },
+      { "rightlabel": "Yes", "trait": "BRAIN" }
+    ],
+    "codename": "COMP MASTER",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 10,
+    "question": "Do you find yourself staring at the wall after losing a 10-2 lead thinking where it all went wrong and trying to figure out who to blame in your 5 stacks?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "AIM" },
+      { "rightlabel": "Yes", "trait": "BRAIN" }
+    ],
+    "codename": "ANALYST",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 11,
+    "question": "Do you often play with your low ranked friends to earn some easy points only to end up having triple negative KD?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "BRAIN" },
+      { "rightlabel": "Yes", "trait": "AIM" }
+    ],
+    "codename": "SMURF",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 12,
+    "question": "Do you swing wide and try to one tap the enemy only to lose your vandal in an eco-round?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "SUPPORT" },
+      { "rightlabel": "Yes", "trait": "ENTRY" }
+    ],
+    "codename": "AIMER",
+    "save_codename_on": "Yes"
+  },
+  {
+    "id": 13,
+    "question": "Do you believe that the scope guns are too easy to use and should be nerfed?",
+    "scale": [1, 2, 3, 4, 5],
+    "options": [
+      { "leftlabel": "No", "trait": "SUPPORT" },
+      { "rightlabel": "Yes", "trait": "ENTRY" }
+    ],
+    "codename": "SNIPER",
+    "save_codename_on": "Yes"
+  },
+    {
+        "id": 14,
+        "question": "Are you expected to sneak/jump into the site, kill 3 enemies, find a perfect spot to plant so that your teammates standing in the lobby can play lineups and win the round?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "PLANTER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 15,
+        "question": "Do you find yourself mastering every other agent thinking it would help the team?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "FLEX",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 16,
+        "question": "Do you believe it\u2019s a waste of time trying to give info to your teammates when playing with randoms because they will die in a stupid way anyway?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "Yes",
+                "trait": "SUPPORT"
+            },
+            {
+                "rightlabel": "No",
+                "trait": "ENTRY"
+            }
+        ],
+        "codename": "NO COMMS",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 17,
+        "question": "Do you often find it hard to find a friend to play the game with because everyone is busy and/or your friend circle can be counted on one hand?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "SUPPORT"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "ENTRY"
+            }
+        ],
+        "codename": "SOLO",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 18,
+        "question": "Do you usually play with your duo who assures to carry but ends up bottom fragging every match?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "DUO",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 19,
+        "question": "Do you often find yourself as the last guy in the lobby when the others keep bickering over their faults in the previous rounds?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "SQUAD",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 20,
+        "question": "Do you let your teammates take the first contact while you sit at least 15 Mts. Back so that you can take revenge for your teammate?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "TRADER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 21,
+        "question": "Do you constantly keep pulling out our renewable ability while you and your team is walking up middle playing contact?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "UTIL",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 22,
+        "question": "Do you find yourself picking up agents that will help your teammate\u2019s screen be filled with colourful lights all the time?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "FLASHER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 23,
+        "question": "Do you have \u201cNVIDIA Instant Replay\u201d turned on to capture your team\u2019s heroic and thrilling moments?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "CLIPPER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 24,
+        "question": "Do you keep finding new ways to motivate your team after they lost a 5v1 situation?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "ENTRY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SUPPORT"
+            }
+        ],
+        "codename": "VIBE",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 25,
+        "question": "Do your team gets annihilated in the first 15 secs on the round when you are on the other side of the map trying to jump over the cypher tripwire?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "LURKER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 26,
+        "question": "Do the opponents constantly spam abusive language towards you because they got killed for not checking the same box 5 rounds in a row or while rotating through spawn only to get killed by you?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "Yes",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "No",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "RAT",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 27,
+        "question": "Do you find yourself looking at the map for more than half the round trying to figure out in which site you can be of more help?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "Yes",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "No",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "LOST",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 28,
+        "question": "Do you constantly find yourself shouting out calls to your teammates only for them to understand it after 10 seconds?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "Yes",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "No",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "IGL",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 29,
+        "question": "Do you fear to play with random players who will find a new way to throw the game every match and only wait for your friends to play the game with?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RAT"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RUSH"
+            }
+        ],
+        "codename": "SQUAD",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 30,
+        "question": "Do you find yourself lagging out whenever you try to duel with an opponent and shoot stray bullets all over the area?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RAT"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RUSH"
+            }
+        ],
+        "codename": "UNSTABLE",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 31,
+        "question": "Do your teammates constantly report you for making their screen colourful?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "FLASHER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 32,
+        "question": "Do you occasionally charge ahead, dodging opponent\u2019s stun/blind/smokes, only to get killed by a shotgun because you half cleared a corner?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RAT"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RUSH"
+            }
+        ],
+        "codename": "HOT HEAD",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 33,
+        "question": "Do you look at your teammate whiffing every way possible on an AFK player and tell yourself that it\u2019s alright?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RAT"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RUSH"
+            }
+        ],
+        "codename": "COOL",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 34,
+        "question": "Do you get the urge to hurl unheard words of abuse at your opponents and write \u201cGG EZZ\u201d after winning a 16-14 match?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "TOXIC",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 35,
+        "question": "Do you constantly try to find timings to insert yourself into positions from where you plan to emerge post-plant?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "RUSH"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "RAT"
+            }
+        ],
+        "codename": "RAT",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 36,
+        "question": "Do you tell your team to make noise and play it slow so that you can creep across the sentinel\u2019s utilities and backstab them?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "CASUALITY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SURVIVOR"
+            }
+        ],
+        "codename": "LURKER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 37,
+        "question": "Do you constantly top frag while having 0 first bloods and one of your teammates keeps cursing you for not taking the fight with them?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "CASUALITY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SURVIVOR"
+            }
+        ],
+        "codename": "BAITER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 38,
+        "question": "Has your WPM significantly increased since you started playing Valorant?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "SURVIVOR"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "CASUALITY"
+            }
+        ],
+        "codename": "KEYBOARD WARRIOR",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 39,
+        "question": "Do you constantly find yourself as the last man standing after a 4v2 situation turns into 1v2 in 6 secs or less?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "CASUALITY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SURVIVOR"
+            }
+        ],
+        "codename": "CLUTCHER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 40,
+        "question": "Do you usually push and clear an angle with a teammate?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "CASUALITY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SURVIVOR"
+            }
+        ],
+        "codename": "TRADER",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 41,
+        "question": "Do you find yourself calling to rush a site after losing 6 rounds in a row?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "SURVIVOR"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "CASUALITY"
+            }
+        ],
+        "codename": "HOT HEAD",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 42,
+        "question": "Do you take deep breaths after you miss every single shot of your gun while fighting and the enemy does the same thing?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "CASUALITY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SURVIVOR"
+            }
+        ],
+        "codename": "COOL",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 43,
+        "question": "Do you believe that negative reinforcement (hurling abusive words, undermining your teammates/opponents) is a good way of boosting morale?",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "SURVIVOR"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "CASUALITY"
+            }
+        ],
+        "codename": "TOXIC",
+        "save_codename_on": "Yes"
+    },
+    {
+        "id": 44,
+        "question": "Would you rather pick Reyna or Neon",
+        "scale": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "options": [
+            {
+                "leftlabel": "No",
+                "trait": "CASUALITY"
+            },
+            {
+                "rightlabel": "Yes",
+                "trait": "SURVIVOR"
+            }
+        ],
+        "codename": "HOPELESS",
+        "save_codename_on": "Yes"
+    }
+]

@@ -1,0 +1,16 @@
+.intro-form{
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    background-color:#f0f5dc ;
+    color: #180c10;
+    border-radius: 1.2rem;
+    padding: 1.6rem 2.2rem;
+    gap: 1.2rem;
+}
+
+.peakSelect, .currentSelect, .ignInput{
+    border: 1px solid #180c10;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+}

@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "personality": "AEDC",
+    "fullform": "Aim  Entry  Dash  Causality",
+    "title": "The Headshot Spear",
+    "priamrydescription": "You are the tip of the spear — the first to engage, the last thing enemies see before their screen fades to black. With impeccable aim and lightning-fast pushes, you dictate the tempo of every round. Your presence forces defenders into panic, opening sites before they even realize what is happening. When you are on form, the game feels like it revolves around your decisions.",
+    "additionaldescription": [
+      { "strength": "Exceptional first-blood potential and unmatched mechanical aim." },
+      { "weakness": "Overconfidence can lead to dying first and leaving team stranded." },
+      { "playstyle": "Explosive entry fragger who thrives in fast-paced rounds." }
+    ]
+  },
+  {
+    "id": 2,
+    "personality": "AEDS",
+    "fullform": "Aim  Entry  Dash  Survivor",
+    "title": "The Last Bullet Hero",
+    "priamrydescription": "A fearless entry with survival instincts sharper than your crosshair. You blast into site, take crucial duels, and somehow remain standing after the chaos. Post-plant, you switch gears from storm to fortress, locking down the win. You thrive under pressure, and the later the round gets, the more dangerous you become.",
+    "additionaldescription": [
+      { "strength": "Clutch-oriented with strong survivability under chaos." },
+      { "weakness": "Can struggle if forced to play slow or passive." },
+      { "playstyle": "Aggressive entry who excels at living through fights to secure round wins." }
+    ]
+  },
+  {
+    "id": 3,
+    "personality": "AETC",
+    "fullform": "Aim  Entry  Rat  Causality",
+    "title": "The Ghost Blade",
+    "priamrydescription": "You kill from the shadows — unseen, unheard, unstoppable. Your aim turns every flank into a guaranteed pick, and your timing shifts the entire flow of the round. Defenders never know where you will strike next, and by the time they react, it is already too late. You don\u2019t just play the game; you control it from the dark.",
+    "additionaldescription": [
+      { "strength": "Unpredictable flanking that dismantles defensive setups." },
+      { "weakness": "If predicted, can get isolated and neutralized." },
+      { "playstyle": "Stealthy lurker who thrives on timing and punishing rotations." }
+    ]
+  },
+  {
+    "id": 4,
+    "personality": "AETS",
+    "fullform": "Aim  Entry  Rat  Survivor",
+    "title": "The Shadow Clutcher",
+    "priamrydescription": "Your style is chaos wrapped in patience — you appear out of nowhere, frag, and disappear without a trace. You live for the clutch, baiting enemies into overconfidence before ending the round on your terms. Survival is not just instinct; it is your weapon. By the time the spike is ticking down, your enemies know you are still alive… and that is enough to break them.",
+    "additionaldescription": [
+      { "strength": "Thrives in 1vX situations and mind games." },
+      { "weakness": "Early round impact can be minimal if too passive." },
+      { "playstyle": "Patient and calculated clutch specialist who thrives on enemy fear." }
+    ]
+  },
+  {
+    "id": 5,
+    "personality": "ASDC",
+    "fullform": "Aim  Support  Dash  Causality",
+    "title": "The Firestarter",
+    "priamrydescription": "You\u2019re the fuse that sets the round ablaze. With both utility and raw gun skill, you create openings that turn pushes into overwhelming floods of force. You know when to take the shot and when to let your teammates shine, making you the perfect catalyst for chaos. Every attack feels deadlier when you\u2019re part of it.",
+    "additionaldescription": [
+      { "strength": "Balances utility usage with high-impact fragging." },
+      { "weakness": "Can burn resources too quickly if not careful." },
+      { "playstyle": "Aggressive support who sets up plays while fragging alongside the entry." }
+    ]
+  },
+  {
+    "id": 6,
+    "personality": "ASDS",
+    "fullform": "Aim  Support  Dash  Survivor",
+    "title": "The Guardian Wolf",
+    "priamrydescription": "Loyal, precise, and unyielding — you\u2019re always there when your team needs you most. You trade every kill perfectly, keep the push alive, and still manage to survive the mayhem. In the post-plant, you\u2019re the last line of defence, holding the round with calm precision. You don\u2019t just support your team; you protect the win.",
+    "additionaldescription": [
+      { "strength": "Reliable trade-fragger and consistent in pressure moments." },
+      { "weakness": "May struggle to take initiative without team direction." },
+      { "playstyle": "Team-first survivor who anchors attacks and post-plants with resilience." }
+    ]
+  },
+  {
+    "id": 7,
+    "personality": "ASTC",
+    "fullform": "Aim  Support  Rat  Causality",
+    "title": "The Silent Anchor",
+    "priamrydescription": "You hold angles like an artist holding a brush — patient, steady, and lethal with every stroke. Your mid-round picks swing the round in your team\u2019s favour before the enemy even realizes they\u2019re losing. You rarely need to move fast; your impact comes from being in the right place at the right time. The game bends to your patience.",
+    "additionaldescription": [
+      { "strength": "Immovable defender with impeccable crosshair placement." },
+      { "weakness": "Over-patience can cost map control." },
+      { "playstyle": "Methodical anchor who wins rounds through patience and precision." }
+    ]
+  },
+  {
+    "id": 8,
+    "personality": "ASTS",
+    "fullform": "Aim  Support  Rat  Survivor",
+    "title": "The Unseen Snare",
+    "priamrydescription": "You\u2019re the player enemies forget about until it\u2019s far too late. Every duel is on your terms; every engagement calculated for survival. You bleed enemy numbers without ever risking your own life. By the time they find you, the round is already lost.",
+    "additionaldescription": [
+      { "strength": "Flawless survival instincts and risk-free kills." },
+      { "weakness": "Impact can be subtle and overlooked until too late." },
+      { "playstyle": "Sneaky survivor who drains opponents\u2019 resources while staying alive." }
+    ]
+  },
+  {
+    "id": 9,
+    "personality": "BEDC",
+    "fullform": "Brain  Entry  Dash  Causality",
+    "title": "The Master Charge",
+    "priamrydescription": "You\u2019re the tactician who leads the storm. Every push is planned, every corner cleared, and every rotation predicted before it happens. Your brain makes your entry unstoppable — defenders aren\u2019t just fighting you; they\u2019re fighting a plan that\u2019s already two steps ahead. You don\u2019t just open the site; you take control of the entire round.",
+    "additionaldescription": [
+      { "strength": "Brilliant tactical entries with game-reading ability." },
+      { "weakness": "Relies heavily on team executing the plan properly." },
+      { "playstyle": "Calculated leader who enters with strategy and foresight." }
+    ]
+  },
+  {
+    "id": 10,
+    "personality": "BEDS",
+    "fullform": "Brain  Entry  Dash  Survivor",
+    "title": "The Post-Plant General",
+    "priamrydescription": "You enter with purpose, clear with precision, and leave no room for doubt once the spike is down. Your calm leadership ensures post-plants are airtight, and your ability to survive means the team always has a leader until the last second. When you\u2019re alive, your team plays with confidence. When you\u2019re gone, they know they\u2019re in trouble.",
+    "additionaldescription": [
+      { "strength": "Keeps post-plants structured and unbreakable." },
+      { "weakness": "Can lack impact if eliminated before spike is planted." },
+      { "playstyle": "Composed leader who thrives in organized post-plant scenarios." }
+    ]
+  },
+  {
+    "id": 11,
+    "personality": "BETC",
+    "fullform": "Brain  Entry  Rat  Causality",
+    "title": "The Mind Stalker",
+    "priamrydescription": "You see the game like a hunter tracking prey — every sound, every rotation, every hesitation is information to exploit. You lurk with purpose, cutting off enemy movements before they even commit to them. When you strike, it\u2019s not random; it\u2019s the moment you\u2019ve been waiting for all round. The round bends around your positioning.",
+    "additionaldescription": [
+      { "strength": "Reads enemy rotations with surgical precision." },
+      { "weakness": "Slow impact if enemies don\u2019t rotate into you." },
+      { "playstyle": "Strategic lurker who dictates pace by controlling rotations." }
+    ]
+  },
+  {
+    "id": 12,
+    "personality": "BETS",
+    "fullform": "Brain  Entry  Rat  Survivor",
+    "title": "The Patient Predator",
+    "priamrydescription": "Timing is your greatest weapon. You don\u2019t rush into fights; you wait for the exact moment when the odds are yours. You live through the round not just by luck, but by perfect decision-making. In the clutch, you\u2019re not just playing to win — you\u2019re playing to break the enemy\u2019s will.",
+    "additionaldescription": [
+      { "strength": "Unmatched timing and clutch composure." },
+      { "weakness": "Over-patience may delay critical fights." },
+      { "playstyle": "Cool-headed predator who thrives in waiting for the perfect strike." }
+    ]
+  },
+  {
+    "id": 13,
+    "personality": "BSDC",
+    "fullform": "Brain  Support  Dash  Causality",
+    "title": "The Lightning Caller",
+    "priamrydescription": "Your calls hit as fast as your executes — one moment the enemy is holding strong, the next they\u2019re drowning in utility and pressure. You create speed through structure, making fast pushes feel effortless. Every round you lead feels like a lightning strike — sudden, precise, and devastating.",
+    "additionaldescription": [
+      { "strength": "Fast and effective caller with high round tempo control." },
+      { "weakness": "If wrong call is made, round collapses quickly." },
+      { "playstyle": "Fast-paced leader who blends brains with aggression." }
+    ]
+  },
+  {
+    "id": 14,
+    "personality": "BSDS",
+    "fullform": "Brain  Support  Dash  Survivor",
+    "title": "The Iron Shepherd",
+    "priamrydescription": "You guide your team through chaos with unshakable composure. Every flash, smoke, and wall is perfectly timed to keep momentum alive. Even when the fight gets messy, you keep your teammates moving forward — and alive. You don\u2019t just lead; you protect.",
+    "additionaldescription": [
+      { "strength": "Keeps team calm and structured under pressure." },
+      { "weakness": "Sometimes sacrifices personal fragging for team play." },
+      { "playstyle": "Protective leader who blends tactics with resilience." }
+    ]
+  },
+  {
+    "id": 15,
+    "personality": "BSTC",
+    "fullform": "Brain  Support  Rat  Causality",
+    "title": "The Trap Weaver",
+    "priamrydescription": "Your game is a web of perfect timing and utility — once the enemy steps into it, they\u2019re already doomed. You dismantle plans before they happen, and your presence alone forces hesitation. You\u2019re not just reacting to the game; you\u2019re shaping it from the shadows.",
+    "additionaldescription": [
+      { "strength": "Master of setups and preemptive counterplay." },
+      { "weakness": "Predictable if same traps are used too often." },
+      { "playstyle": "Tactical controller who wins rounds with layered utility traps." }
+    ]
+  },
+  {
+    "id": 16,
+    "personality": "BSTS",
+    "fullform": "Brain  Support  Rat  Survivor",
+    "title": "The Ice Vein",
+    "priamrydescription": "Calm. Cold. Unkillable. You read the game like an open book and play each round as if you have all the time in the world. The later the round goes, the stronger you become. In the clutch, your heartbeat stays steady while everyone else\u2019s races.",
+    "additionaldescription": [
+      { "strength": "Unshakeable under clutch pressure." },
+      { "weakness": "Low impact early-round presence." },
+      { "playstyle": "Composed late-round closer who thrives when pressure is highest." }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.2rem 8rem;
+    
+}
+
+.navbar .navbar-links{
+    display: flex;
+    gap: 2rem;
+    color: #f0f5dc;
+    font-size: 1.2rem;
+}
+
+.navbar-brand{
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    font-family: "VT323", monospace;
+}
+

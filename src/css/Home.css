@@ -1,0 +1,116 @@
+.home-content{
+    display: flex;
+    gap: 3rem;
+    margin: 0 12rem;
+    flex-wrap: wrap;
+}
+
+.home-content>div{
+    flex: 1 1 45%;
+}
+
+.home-content>div:nth-child(3){
+    flex: 1 1 100%;
+}
+
+.heading-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 3rem 1.5rem;
+    color: #f9f4ea;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/src/assets/bg-image-home.jpg");
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    border-radius: 1.6rem 3.2rem;
+    gap: 1.4rem;
+}
+
+.semi-title-heading{
+font-family: "Ubuntu Mono", monospace;
+font-style: bold;
+font-weight: 700;
+font-size: 1.2rem;
+}
+
+.title-heading{
+font-size: 3.2rem;
+font-weight: bold;
+color: #f0b886;
+line-height: 1.1;
+}
+
+.mobile-take-test {
+  display: none;
+}
+
+.heading-text{
+font-family: "Ubuntu Mono", monospace;
+
+}
+
+.cta-section{
+display: flex;
+flex-direction: column;
+gap: 2.8rem;
+justify-content: center;
+}
+
+.cta-text{
+font-family: "VT323", monospace;
+font-size: 1.4rem;
+}
+
+.cta-btns{
+display: flex;
+justify-content: space-evenly;
+}
+
+.workflow-section-heading{
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 3.2rem;
+font-weight: bold;
+color: #f1cc46;
+font-family: "Ubuntu Mono", monospace;
+}
+
+.workflow-section{
+    display: flex;
+    gap: 4rem;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.workflow-section p{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    font-family: "VT323", monospace;
+}
+
+.workflow-section p:nth-child(1),
+.workflow-section p:nth-child(3){
+    color: #8f74e8;
+}
+
+.workflow-section p i{
+    text-align: center;
+    font-size: 4rem;
+}
+
+
+@media (max-width: 768px) {
+  .mobile-take-test {
+    display: block;
+    margin: 1rem 0;
+  }
+    .cta-section .get-started-btn {
+    display: none;
+  }
+}

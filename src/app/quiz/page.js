@@ -7,6 +7,7 @@ export default async function Home() {
     const { data: questionsData, error: questionsError } = await supabase
         .from("questions")
         .select("*")
+        .order("display_order", { ascending: true })
 
 
     // console.log(questionsData[0].question_text)

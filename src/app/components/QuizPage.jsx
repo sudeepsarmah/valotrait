@@ -1,27 +1,71 @@
 'use client'
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { createClient } from "../../supabase/client"
 import ProgressBar from "../components/ProgressBar"
 
 export default function QuizPage({ questions }) {
     // console.log(questions)
-    const [radioOptions, setRadioOptions] = useState({})
+    const [selectedAnswers, setSelectedAnswers] = useState({})
+    const questionsRef = useRef(null)
 
-    const handleRadioChange = (e, questionNumber) => {
-        setRadioOptions(prev => ({
-            ...prev,
-            [questionNumber]: e.target.value
-        }))
+    const getMap = () => {
+        if (!questionsRef.current) {
+            questionsRef.current = new Map()
+        }
+        return questionsRef.current
+    }
 
-        console.log("Question ID -", questionNumber)
+    const getNextUnansweredQuestion = (updatedAnswers, index) => {
+        for (let i = index + 1; i < questions.length; i++) {
+            if (!updatedAnswers[questions[i].display_order]) return i
+        }
+        return null
+    }
+
+    const handleScroll = (scrollToIndex) => {
+        const scrollQuestionId = questions[scrollToIndex].id
+        const nodeId = questionsRef.current.get(scrollQuestionId)
+        if (!nodeId) {
+            console.log("Element not found")
+            return
+        }
+        nodeId.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
+    }
+
+
+
+    const handleRadioChange = (e, index) => {
+
+        const updatedState = { ...selectedAnswers, [questions[index].display_order]: e.target.value }
+        setSelectedAnswers(updatedState)
+
+        const scrollToNextIndex = getNextUnansweredQuestion(updatedState, index)
+
+        if (scrollToNextIndex == null) {
+            console.log("All questions answered")
+            return
+        }
+
+        handleScroll(scrollToNextIndex)
+
+        // TODO:
+        // Investigate whether scrolling should happen in useLayoutEffect instead of immediately after setState.
+
+
+
+        console.log("Question ID -", index)
         console.log("Selected Option - ", e.target.value)
     }
-    const answeredCount = Object.keys(radioOptions).length
+    const answeredCount = Object.keys(selectedAnswers).length
     const percentage = (answeredCount / questions.length) * 100
     console.log("Count - ", answeredCount)
     console.log("Percentage - ", percentage)
 
-    console.log("Radio options - ", radioOptions)
+    console.log("Radio options - ", selectedAnswers)
 
     return (
         <>
@@ -31,42 +75,51 @@ export default function QuizPage({ questions }) {
                 totalQuestions={questions.length} />
             <div>
                 <h2>Answer the following question:</h2>
-                {questions.map((question) => {
+                {questions.map((question, index) => {
                     return (
                         <div key={question.id}
-                            className="rounded-3xl border border-zinc-200 p-6 mb-4 max-w-2xl cursor-pointer">
+                            ref={(node) => {
+                                const map = getMap()
+                                if (node) {
+                                    map.set(question.id, node)
+                                }
+                                return () => {
+                                    map.delete(question.id)
+                                }
+                            }}
+                            className="rounded-3xl border border-zinc-200 p-6 mb-4 max-w-2xl cursor-pointer" >
                             <span>{question.display_order}</span>
                             <p className="">{question.question_text}</p>
                             <div className="flex justify-center gap-12 mt-6">
                                 <span>Not Likely</span>
                                 <div className="flex gap-2 justify-center">
                                     <label htmlFor="">
-                                        <input type="radio" name={`${question.id}Options`} value="1" className="radio-circle" id={`${question.id}1`} checked={radioOptions[question.display_order] === "1"}
-                                            onChange={(e) => handleRadioChange(e, question.display_order)} />
+                                        <input type="radio" name={`${question.id}Options`} value="1" className="radio-circle" id={`${question.id}1`} checked={selectedAnswers[question.display_order] === "1"}
+                                            onChange={(e) => handleRadioChange(e, index)} />
                                     </label>
                                     <label htmlFor="">
                                         <input type="radio" name={`${question.id}Options`} value="2" className="radio-circle" id={`${question.id}2`}
-                                            checked={radioOptions[question.display_order] === "2"}
-                                            onChange={(e) => handleRadioChange(e, question.display_order)} />
+                                            checked={selectedAnswers[question.display_order] === "2"}
+                                            onChange={(e) => handleRadioChange(e, index)} />
                                     </label>
                                     <label htmlFor="">
                                         <input type="radio" name={`${question.id}Options`} value="3" className="radio-circle" id={`${question.id}3`}
-                                            checked={radioOptions[question.display_order] === "3"}
-                                            onChange={(e) => handleRadioChange(e, question.display_order)} />
+                                            checked={selectedAnswers[question.display_order] === "3"}
+                                            onChange={(e) => handleRadioChange(e, index)} />
                                     </label>
                                     <label htmlFor="">
                                         <input type="radio" name={`${question.id}Options`} value="4" className="radio-circle" id={`${question.id}4`}
-                                            checked={radioOptions[question.display_order] === "4"}
-                                            onChange={(e) => handleRadioChange(e, question.display_order)} />
+                                            checked={selectedAnswers[question.display_order] === "4"}
+                                            onChange={(e) => handleRadioChange(e, index)} />
                                     </label>
                                     <label htmlFor="">
                                         <input type="radio" name={`${question.id}Options`} value="5" className="radio-circle" id={`${question.id}5`}
-                                            checked={radioOptions[question.display_order] === "5"}
-                                            onChange={(e) => handleRadioChange(e, question.display_order)} />
+                                            checked={selectedAnswers[question.display_order] === "5"}
+                                            onChange={(e) => handleRadioChange(e, index)} />
                                     </label>
                                 </div>
                                 <span>Most Likely</span>
-                                {radioOptions[question.display_order] ? <span className="text-lime-300">✓</span> : ""}
+                                {selectedAnswers[question.display_order] ? <span className="text-lime-300">✓</span> : ""}
                             </div>
                         </div>
                     )

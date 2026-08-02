@@ -8,6 +8,7 @@ export default function QuizPage({ questions }) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const questionsRef = useRef(null)
 
+
     const getMap = () => {
         if (!questionsRef.current) {
             questionsRef.current = new Map()
@@ -36,8 +37,6 @@ export default function QuizPage({ questions }) {
         });
     }
 
-
-
     const handleRadioChange = (e, index) => {
 
         const updatedState = { ...selectedAnswers, [questions[index].display_order]: e.target.value }
@@ -60,11 +59,21 @@ export default function QuizPage({ questions }) {
         console.log("Question ID -", index)
         console.log("Selected Option - ", e.target.value)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // calculateTraitScores()
+        // findClosestPersonality()
+        // navigate("/result")
+    }
+
+
     const answeredCount = Object.keys(selectedAnswers).length
     const percentage = (answeredCount / questions.length) * 100
+
+    // debugging
     console.log("Count - ", answeredCount)
     console.log("Percentage - ", percentage)
-
     console.log("Radio options - ", selectedAnswers)
 
     return (
@@ -124,6 +133,7 @@ export default function QuizPage({ questions }) {
                         </div>
                     )
                 })}
+                <button type="submit" onClick={handleSubmit}>Submit</button>
             </div>
         </>
     )

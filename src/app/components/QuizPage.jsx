@@ -2,6 +2,7 @@
 import { useState, useRef } from "react"
 import { createClient } from "../../supabase/client"
 import ProgressBar from "../components/ProgressBar"
+import { calculateTraitScores } from "../lib/personality"
 
 export default function QuizPage({ questions }) {
     // console.log(questions)
@@ -60,9 +61,26 @@ export default function QuizPage({ questions }) {
         console.log("Selected Option - ", e.target.value)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // calculateTraitScores()
+    const handleSubmit = () => {
+        const answers = {
+            1: 3,
+            2: 2,
+            3: 2,
+            4: 4,
+            14: 1,
+            15: 2,
+            17: 4,
+            19: 3,
+            25: 1,
+            26: 2,
+            28: 5,
+            29: 2,
+            34: 1,
+            35: 5,
+            38: 5,
+            39: 2
+        }
+        calculateTraitScores(answers, questions)
         // findClosestPersonality()
         // navigate("/result")
     }
@@ -133,7 +151,7 @@ export default function QuizPage({ questions }) {
                         </div>
                     )
                 })}
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                <button onClick={() => handleSubmit()}>Submit</button>
             </div>
         </>
     )

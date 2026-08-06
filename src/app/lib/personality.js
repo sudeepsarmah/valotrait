@@ -36,13 +36,62 @@ const calculateTraitScores = (selectedAnswers, questions) => {
 
 const generatePersonalityCode = (traitScore) => {
     // generate the code AEDF/BSRC according to the traitscores
-    // get the personality name and code from supabase
-    // store the personality code to the results table in supabase
-    const personalityDetails = { personalityCode, personalityName }
-    return personalityDetails
+    const traitPairs = [
+        {
+            left_trait: "AIM",
+            left_code: "A",
+
+            right_trait: "BRAIN",
+            right_code: "B"
+        },
+        {
+            left_trait: "SUPPORT",
+            left_code: "S",
+
+            right_trait: "ENTRY",
+            right_code: "E"
+        },
+        {
+            left_trait: "DASH",
+            left_code: "D",
+
+            right_trait: "RAT",
+            right_code: "R"
+        },
+        {
+            left_trait: "CASUALTY",
+            left_code: "C",
+
+            right_trait: "SURVIVOR",
+            right_code: "S"
+        }
+    ]
+
+    let personalityCode = ""
+
+    for (let i = 0; i < traitPairs.length; i++) {
+
+        const traitPair = traitPairs[i]
+        const traitScoreLeft = traitScore[traitPair.left_trait]
+        const traitScoreRight = traitScore[traitPair.right_trait]
+
+        if (traitScoreLeft === traitScoreRight) {
+            personalityCode += traitPair.left_code
+            // TODO:
+            // Revisit tie-breaking strategy after collecting user feedback.
+        }
+        else if (traitScoreLeft > traitScoreRight) {
+            personalityCode += traitPair.left_code
+        } else if (traitScoreLeft < traitScoreRight) {
+            personalityCode += traitPair.right_code
+        }
+    }
+
+    return personalityCode
 }
 
 const buildResult = (personalityDetails) => {
+    // get the personality name and code from supabase
     const getRole = (personalityCode) => {
         // get the role recommendation from the personalities table in supabase
         return userPrefferedRole
@@ -56,6 +105,7 @@ const buildResult = (personalityDetails) => {
 }
 
 const saveResult = (buildResult) => {
+    // store the personality code to the results table in supabase
     // store the scores in the results table in supabase
 }
 

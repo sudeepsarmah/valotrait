@@ -2,7 +2,7 @@
 import { useState, useRef } from "react"
 import { createClient } from "../../supabase/client"
 import ProgressBar from "../components/ProgressBar"
-import { calculateTraitScores } from "../lib/personality"
+import { calculateTraitScores, generatePersonalityCode } from "../lib/personality"
 
 export default function QuizPage({ questions }) {
     // console.log(questions)
@@ -63,25 +63,25 @@ export default function QuizPage({ questions }) {
 
     const handleSubmit = () => {
         const answers = {
-            1: 3,
-            2: 2,
-            3: 2,
-            4: 4,
+            1: 5,
+            2: 5,
+            3: 5,
+            4: 1,
             14: 1,
             15: 2,
-            17: 4,
-            19: 3,
+            17: 1,
+            19: 1,
             25: 1,
             26: 2,
-            28: 5,
+            28: 1,
             29: 2,
             34: 1,
-            35: 5,
-            38: 5,
+            35: 1,
+            38: 1,
             39: 2
         }
-        calculateTraitScores(answers, questions)
-        // findClosestPersonality()
+        const traitScores = calculateTraitScores(answers, questions)
+        const personalityCode = generatePersonalityCode(traitScores)
         // navigate("/result")
     }
 

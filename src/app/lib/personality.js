@@ -1,3 +1,6 @@
+import { createClient } from "../../supabase/client"
+
+
 const calculateTraitScores = (selectedAnswers, questions) => {
     const optionsWeight = {
         1: { left_trait: 2, right_trait: 0 },
@@ -31,8 +34,6 @@ const calculateTraitScores = (selectedAnswers, questions) => {
     console.log(traitScore)
     return traitScore
 }
-
-
 
 const generatePersonalityCode = (traitScore) => {
     // generate the code AEDF/BSRC according to the traitscores
@@ -87,7 +88,25 @@ const generatePersonalityCode = (traitScore) => {
         }
     }
 
+    console.log("Personality Code - ", personalityCode)
     return personalityCode
+}
+
+const getPersonality = async (personalityCode) => {
+    // call supabase personality table
+    const supabase = await createClient()
+    const { data: personalityRow, error: personalityError } = await supabase
+        .from("personalities")
+        .select("role, description_template, traits, compatible_type, agents_recommendation")
+        .eq("code", personalityCode)
+        .single()
+    // only select the personality row that matches the generated code
+    if (personalityError) {
+        console.log(personalityError.message)
+        return null
+    }
+
+    return personalityRow
 }
 
 const buildResult = (personalityDetails) => {

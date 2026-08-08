@@ -27,7 +27,6 @@ const calculateTraitScores = (selectedAnswers, questions) => {
         traitScore[question.right_trait] += weights.right_trait
         console.log("display_order - ", question.display_order)
         console.log("selected_answer - ", answer)
-        console.log("weight_object - ", weights)
 
     }
 
@@ -94,39 +93,75 @@ const generatePersonalityCode = (traitScore) => {
 
 const getPersonality = async (personalityCode) => {
     // call supabase personality table
-    const supabase = await createClient()
+    const supabase = createClient()
     const { data: personalityRow, error: personalityError } = await supabase
         .from("personalities")
-        .select("role, description_template, traits, compatible_type, agents_recommendation")
+        .select("code, personality_name, role, name, description_template, traits, compatible_type, agents_recommendation")
         .eq("code", personalityCode)
         .single()
     // only select the personality row that matches the generated code
+    console.log("Personality code:", personalityCode)
+    console.log("Personality data:", personalityRow)
+    console.log("Personality error:", personalityError)
     if (personalityError) {
-        console.log(personalityError.message)
         return null
     }
 
     return personalityRow
 }
 
-const buildResult = (personalityDetails) => {
-    // get the personality name and code from supabase
-    const getRole = (personalityCode) => {
-        // get the role recommendation from the personalities table in supabase
-        return userPrefferedRole
+const buildResult = (personalityRow, traitScores) => {
+    // for no personality returned by the getPersonality() function from supabase
+    if (!personalityRow) {
+        console.log("No personality row returned")
+        return null
     }
 
-
-    const getRecommendedAgents = (personalityCode) => {
-        // get the recommended agents and the compatible types from the personilities table in supabase
-        return agentsRecommended
+    // for no traitscores received from calculateTraitScores() function
+    if (!traitScores) {
+        console.log("No trait scores received.")
+        return null
     }
+
+    // building the resultObject {}
+    const resultObject = {
+        "personality_code": personalityRow.code,
+        "scores": traitScores,
+        "personality_name": personalityRow.personality_name,
+        "recommended_role": personalityRow.role,
+        "recommended_agents": personalityRow.agents_recommendation,
+        "compatible_type": personalityRow.compatible_type,
+        "codenames": personalityRow.name,
+        "description_template": personalityRow.description_template,
+        "traits": personalityRow.traits
+    }
+    return resultObject
 }
 
-const saveResult = (buildResult) => {
-    // store the personality code to the results table in supabase
-    // store the scores in the results table in supabase
+const saveResult = async (resultObject) => {
+    const supabase = createClient()
+    const { data: resultsData, error: resultsError } = await supabase
+        .from("results")
+        .insert({
+            personality_code: resultObject.personality_code,
+            scores: resultObject.scores,
+            recommended_role: resultObject.recommended_role,
+            recommended_agents: resultObject.recommended_agents,
+            compatible_type: resultObject.compatible_type,
+            codenames: resultObject.codenames,
+            description_template: resultObject.description_template,
+            personality_name: resultObject.personality_name,
+            traits: resultObject.traits
+        })
+        .select()
+        .single()
+
+    if (resultsError) {
+        console.log("Unable to save results", resultsError)
+        return null
+    }
+    return resultsData
 }
 
 
-export { calculateTraitScores, generatePersonalityCode, buildResult }
+export { calculateTraitScores, generatePersonalityCode, buildResult, getPersonality, saveResult }

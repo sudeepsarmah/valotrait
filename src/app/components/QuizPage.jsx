@@ -2,6 +2,7 @@
 import { useState, useRef } from "react"
 import { createClient } from "../../supabase/client"
 import ProgressBar from "../components/ProgressBar"
+import { calculateTraitScores, generatePersonalityCode, getPersonality, buildResult, saveResult } from "../lib/personality"
 
 export default function QuizPage({ questions }) {
     // console.log(questions)
@@ -60,10 +61,38 @@ export default function QuizPage({ questions }) {
         console.log("Selected Option - ", e.target.value)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // calculateTraitScores()
-        // findClosestPersonality()
+    const handleSubmit = async () => {
+        const answers = {
+            1: 5,
+            2: 5,
+            3: 5,
+            4: 1,
+            14: 1,
+            15: 2,
+            17: 1,
+            19: 1,
+            25: 1,
+            26: 2,
+            28: 1,
+            29: 2,
+            34: 1,
+            35: 1,
+            38: 1,
+            39: 2
+        }
+        const traitScores = calculateTraitScores(answers, questions)
+        const personalityCode = generatePersonalityCode(traitScores)
+        const personalityRow = await getPersonality(personalityCode)
+
+        const resultObject = buildResult(personalityRow, traitScores)
+
+        console.log("Result object:", resultObject)
+
+        const savedResult = await saveResult(resultObject)
+
+        console.log("Saved result:", savedResult)
+
+        // console.log("Personality Row :", personalityRow)
         // navigate("/result")
     }
 
@@ -133,7 +162,7 @@ export default function QuizPage({ questions }) {
                         </div>
                     )
                 })}
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                <button onClick={() => handleSubmit()}>Submit</button>
             </div>
         </>
     )

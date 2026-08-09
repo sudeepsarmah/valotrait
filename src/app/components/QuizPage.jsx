@@ -3,12 +3,13 @@ import { useState, useRef } from "react"
 import { createClient } from "../../supabase/client"
 import ProgressBar from "../components/ProgressBar"
 import { calculateTraitScores, generatePersonalityCode, getPersonality, buildResult, saveResult } from "../lib/personality"
+import { useRouter } from 'next/navigation'
 
 export default function QuizPage({ questions }) {
     // console.log(questions)
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const questionsRef = useRef(null)
-
+    const router = useRouter()
 
     const getMap = () => {
         if (!questionsRef.current) {
@@ -63,18 +64,18 @@ export default function QuizPage({ questions }) {
 
     const handleSubmit = async () => {
         const answers = {
-            1: 5,
-            2: 5,
-            3: 5,
-            4: 1,
+            1: 1,
+            2: 1,
+            3: 1,
+            4: 5,
             14: 1,
-            15: 2,
+            15: 1,
             17: 1,
             19: 1,
             25: 1,
-            26: 2,
+            26: 1,
             28: 1,
-            29: 2,
+            29: 1,
             34: 1,
             35: 1,
             38: 1,
@@ -84,6 +85,10 @@ export default function QuizPage({ questions }) {
         const personalityCode = generatePersonalityCode(traitScores)
         const personalityRow = await getPersonality(personalityCode)
 
+        if (!personalityRow) {
+            console.log("Unable to find personality")
+            return
+        }
         const resultObject = buildResult(personalityRow, traitScores)
 
         console.log("Result object:", resultObject)
@@ -93,7 +98,9 @@ export default function QuizPage({ questions }) {
         console.log("Saved result:", savedResult)
 
         // console.log("Personality Row :", personalityRow)
+
         // navigate("/result")
+        router.push(`/result/${savedResult.id}`)
     }
 
 

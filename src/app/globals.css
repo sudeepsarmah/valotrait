@@ -33,4 +33,21 @@ body {
     @apply focus:outline-none transition-all duration-200;
     @apply hover:bg-blue-400 cursor-pointer;
   }
+  .cards{
+    @apply bg-white border border-slate-200 shadow-sm w-full;
+    @apply max-w-sm rounded-lg mx-auto mt-6 p-4 sm:p-6 dark:bg-neutral-800;
+    @apply dark:border-neutral-700;
+  }
+  .h3-cards{
+    @apply text-slate-900 text-base font-semibold dark:text-slate-50;
+  }
+  .p-cards{
+    @apply mt-2 text-sm text-slate-600 leading-relaxed dark:text-slate-400;
+  }
+  .href-cards{
+    @apply inline-block mt-6 py-2 px-3.5 text-sm rounded-md font-semibold;
+    @apply cursor-pointer text-white border border-blue-600 bg-blue-600 ;
+    @apply hover:bg-blue-700 transition-all focus:outline-none;
+    @apply focus-visible:ring-2 focus-visible:ring-blue-500;
+  }
 }

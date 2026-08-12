@@ -1,5 +1,5 @@
 "use client"
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip, Legend } from 'recharts';
 // import { RechartsDevtools } from '@recharts/devtools';
 
 export default function TraitChart({ data }) {
@@ -9,23 +9,26 @@ export default function TraitChart({ data }) {
     console.log(chartData)
     return (
         <>
-            <h1>This is the chart</h1>
+
             <RadarChart
                 style={{ width: '100%', height: '100%', maxWidth: '600px', maxHeight: '80vh', aspectRatio: 1 }}
                 responsive
-                outerRadius="80%"
+                outerRadius="60%"
                 data={chartData}
                 margin={{
-                    top: 20,
-                    left: 20,
-                    right: 20,
-                    bottom: 20,
+                    top: 5,
+                    left: 10,
+                    right: 15,
+                    bottom: 5,
                 }}
             >
                 <PolarGrid />
+                <Tooltip />
+                <Legend />
                 <PolarAngleAxis dataKey="subject" />
                 <PolarRadiusAxis />
-                <Radar dataKey="score" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+
+                <Radar dataKey="score" name='Trait Scores' stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
                 {/* <RechartsDevtools /> */}
             </RadarChart>
 

@@ -1,5 +1,5 @@
 import TraitChart from "./recharts/TraitChart"
-
+import DistributionBarChart from "./recharts/DistributionBarChart"
 
 export default function ResultCard({ results }) {
     return (
@@ -14,12 +14,17 @@ export default function ResultCard({ results }) {
                                 {results.personality_code} - {results.codenames}</p>
                             <p>Compatible Type: {results.compatible_type}</p>
                         </div>
-
-
                     </section>
-                    <div>
-                        <TraitChart data={results} />
-                    </div>
+
+                    <section className="flex flex-col md:flex-row items-center ">
+                        <div className="flex-1 min-w-0">
+                            <TraitChart data={results} />
+                        </div>
+                        <div className="flex-2 min-w-0  ">
+                            <DistributionBarChart />
+                        </div>
+                    </section>
+
                     <section>
                         <h3>Your valorant role : </h3>
                         <h4>{results.recommended_role}</h4>

@@ -81,6 +81,8 @@ export default function QuizPage({ questions }) {
             38: 1,
             39: 2
         }
+
+        const sessionId = crypto.randomUUID()
         const traitScores = calculateTraitScores(answers, questions)
         const personalityCode = generatePersonalityCode(traitScores)
         const personalityRow = await getPersonality(personalityCode)
@@ -93,14 +95,15 @@ export default function QuizPage({ questions }) {
 
         console.log("Result object:", resultObject)
 
-        const savedResult = await saveResult(resultObject)
+        const savedResult = await saveResult(resultObject, sessionId)
 
         console.log("Saved result:", savedResult)
 
         // console.log("Personality Row :", personalityRow)
 
         // navigate("/result")
-        router.push(`/result/${savedResult.id}`)
+        console.log("Session Id - ", sessionId)
+        router.push(`/result/${savedResult.session_id}`)
     }
 
 
@@ -119,6 +122,7 @@ export default function QuizPage({ questions }) {
                 ansCount={answeredCount}
                 totalQuestions={questions.length} />
             <div>
+                <button className="border border-green-500 bg-amber-400 text-zinc-950" onClick={() => handleSubmit()}>Submit</button>
                 <h2>Answer the following question:</h2>
                 {questions.map((question, index) => {
                     return (
@@ -169,7 +173,7 @@ export default function QuizPage({ questions }) {
                         </div>
                     )
                 })}
-                <button onClick={() => handleSubmit()}>Submit</button>
+
             </div>
         </>
     )

@@ -2,14 +2,14 @@ import { createClient } from "@/supabase/server"
 import ResultCard from "@/app/components/ResultCard"
 
 export default async function ResultPage({ params }) {
-    const { id } = await params
+    const { sessionId } = await params
 
     const supabase = await createClient()
 
     const { data: resultsData, error } = await supabase
         .from("results")
         .select("*")
-        .eq("id", id)
+        .eq("session_id", sessionId)
         .single()
 
     if (error) {
@@ -19,7 +19,7 @@ export default async function ResultPage({ params }) {
 
 
 
-    console.log("Result ID : ", id)
+    // console.log("Result ID : ", id)
     console.log("Result : ", resultsData)
 
     return (

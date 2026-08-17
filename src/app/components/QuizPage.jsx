@@ -83,10 +83,15 @@ export default function QuizPage({ questions }) {
         }
 
         const sessionId = crypto.randomUUID()
+        const supabase = await createClient()
+        const { data: { user } } = await supabase.auth.getUser()
+        const userId = user?.id ?? null
+
+
         const traitScores = calculateTraitScores(answers, questions)
         const personalityCode = generatePersonalityCode(traitScores)
         const personalityRow = await getPersonality(personalityCode)
-
+        console.log("Personality Row - ", personalityRow)
         if (!personalityRow) {
             console.log("Unable to find personality")
             return
@@ -95,9 +100,16 @@ export default function QuizPage({ questions }) {
 
         console.log("Result object:", resultObject)
 
-        const savedResult = await saveResult(resultObject, sessionId)
+        const savedResult = await saveResult(resultObject, sessionId, userId)
 
         console.log("Saved result:", savedResult)
+        if (!savedResult) {
+            console.log("Couldn't find result, please check database")
+            return
+        }
+
+
+        localStorage.setItem("valotraits_session_id", sessionId)
 
         // console.log("Personality Row :", personalityRow)
 

@@ -138,7 +138,7 @@ const buildResult = (personalityRow, traitScores) => {
     return resultObject
 }
 
-const saveResult = async (resultObject, sessionId) => {
+const saveResult = async (resultObject, sessionId, userId) => {
     const supabase = createClient()
     const { data: resultsData, error: resultsError } = await supabase
         .from("results")
@@ -152,7 +152,8 @@ const saveResult = async (resultObject, sessionId) => {
             description_template: resultObject.description_template,
             personality_name: resultObject.personality_name,
             traits: resultObject.traits,
-            session_id: sessionId
+            session_id: sessionId,
+            user_id: userId
         })
         .select()
         .single()

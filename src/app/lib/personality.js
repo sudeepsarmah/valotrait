@@ -123,6 +123,9 @@ const buildResult = (personalityRow, traitScores) => {
         return null
     }
 
+
+    const personalityDescription = `You are ${personalityRow.name}, now get up and do your job as the ${personalityRow.role} of the team. ${personalityRow.description_template}. Your playstyle is of a ${personalityRow.traits.playstyle}. Your strengths include ${personalityRow.traits.strengths}. However, you ${personalityRow.traits.weaknesses}. You are the most compatible with someone from the ${personalityRow.compatible_type} class. You should try out these agents - `
+
     // building the resultObject {}
     const resultObject = {
         "personality_code": personalityRow.code,
@@ -132,7 +135,7 @@ const buildResult = (personalityRow, traitScores) => {
         "recommended_agents": personalityRow.agents_recommendation,
         "compatible_type": personalityRow.compatible_type,
         "codenames": personalityRow.name,
-        "description_template": personalityRow.description_template,
+        "description_template": personalityDescription,
         "traits": personalityRow.traits
     }
     return resultObject

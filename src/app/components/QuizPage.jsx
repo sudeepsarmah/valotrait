@@ -64,21 +64,21 @@ export default function QuizPage({ questions }) {
 
     const handleSubmit = async () => {
         const answers = {
-            1: 1,
-            2: 1,
+            1: 4,
+            2: 4,
             3: 1,
             4: 5,
             14: 1,
             15: 1,
-            17: 1,
-            19: 1,
-            25: 1,
+            17: 4,
+            19: 4,
+            25: 5,
             26: 1,
-            28: 1,
-            29: 1,
+            28: 5,
+            29: 5,
             34: 1,
-            35: 1,
-            38: 1,
+            35: 5,
+            38: 5,
             39: 2
         }
 

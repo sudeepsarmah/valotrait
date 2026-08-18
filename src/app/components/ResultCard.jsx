@@ -28,11 +28,11 @@ export default function ResultCard({ results }) {
                     <section>
                         <h3>Your valorant role : </h3>
                         <h4>{results.recommended_role}</h4>
-                        <p>Role Description - {results.description_template}</p>
+                        <h2>Role Description -</h2>
+                        <p> {results.description_template}</p>
                     </section>
 
                     <section className="flex justify-center gap-4 flex-col mb-6">
-                        <h2>Recommended Agents: </h2>
                         <div className="flex justify-center gap-4">
                             {Object.entries(
                                 results.recommended_agents
@@ -59,12 +59,6 @@ export default function ResultCard({ results }) {
                                 </div>
                             ))}
                         </div>
-                    </section>
-
-                    <section>
-                        <p>Your playstyle: {results.traits.playstyle}</p>
-                        <p>Your Strengths : {results.traits.strengths}</p>
-                        <p>Your weakness : {results.traits.weaknesses}</p>
                     </section>
                 </div>
             )}

@@ -1,10 +1,10 @@
 import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
 
+
 export default function ResultCard({ results }) {
     return (
         <>
-
             {results && (
                 <div className="mt-6">
                     <section className="flex max-w-2xl ">

@@ -10,6 +10,7 @@ export default function ResultCard({ results }) {
         }
     })
 
+
     // choosing the agent based on the highest scores
     const entries = Object.entries(results.scores)
     const highestRatedTrait = entries.reduce((max, current) => current[1] > max[1] ? current : max)

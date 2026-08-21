@@ -73,7 +73,7 @@ export default function QuizPage({ questions }) {
             17: 4,
             19: 4,
             25: 5,
-            26: 1,
+            26: 5,
             28: 5,
             29: 5,
             34: 1,

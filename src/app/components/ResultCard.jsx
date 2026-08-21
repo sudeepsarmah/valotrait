@@ -1,10 +1,36 @@
 import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
-
+import ShareButtons from "./ShareButtons"
 
 export default function ResultCard({ results }) {
+    const recommendedAgents = Object.entries(results.recommended_agents).map(([key, value]) => {
+        return {
+            trait: key,
+            agent: value
+        }
+    })
+
+    // choosing the agent based on the highest scores
+    const entries = Object.entries(results.scores)
+    const highestRatedTrait = entries.reduce((max, current) => current[1] > max[1] ? current : max)
+    console.log("highestTrait: ", highestRatedTrait)
+
+    const highestRatedAgent = recommendedAgents.find(agent => agent.trait.toUpperCase() === highestRatedTrait[0].toUpperCase())
+
+    const personalityDetails = {
+        title: results.personality_name,
+        agent: highestRatedAgent.agent,
+        role: results.recommended_role
+    }
+
+    // logging results
+    console.log("recommended: ", recommendedAgents)
+    console.log("highestAgent: ", highestRatedAgent)
+    console.log("agent:", personalityDetails.agent)
+
     return (
         <>
+            <ShareButtons resultsDetails={personalityDetails} />
             {results && (
                 <div className="mt-6">
                     <section className="flex max-w-2xl ">
@@ -65,3 +91,4 @@ export default function ResultCard({ results }) {
         </>
     )
 }
+

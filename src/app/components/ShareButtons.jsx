@@ -30,17 +30,22 @@ export default function ShareButtons({ resultsDetails }) {
         console.log(resultsDetails.agent)
 
         // checking navigator.share first if the browser supports it
-        if (navigator.share) {
-            await navigator.share({
-                title: "My ValoTraits Result",
-                text: text,
-                url: window.location.href
-            })
-            console.log("navigator.share worked")
-        } else {
-            await navigator.clipboard.writeText(text)
-            console.log("navigator.share failed, fallback to clipboard", text)
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: "My ValoTraits Result",
+                    text: text,
+                    url: window.location.href
+                })
+                console.log("navigator.share worked")
+            } else {
+                await navigator.clipboard.writeText(text)
+                console.log("navigator.share unavailable, copied to clipboard")
+            }
+        } catch (err) {
+            console.log("Sharing Cancelled or failed:", err)
         }
+
     }
 
     return (

@@ -5,7 +5,7 @@ import { useState } from "react"
 export default function ShareButtons({ resultsDetails }) {
 
     const [iscopied, setIsCopied] = useState(false)
-    const [shareText, setShareText] = useState("")
+
 
     const handleCopy = async () => {
         try {
@@ -24,8 +24,15 @@ export default function ShareButtons({ resultsDetails }) {
 
     const handleShareText = async () => {
 
-        const text = `I got the ${resultsDetails.title}. My role is ${resultsDetails.role}, and my recommended agent is ${resultsDetails.agent}. Take the quiz and find your Valorant Personality`
-        setShareText(text)
+        const url = window.location.href
+        const cta = "Take the quiz and find your Valorant Personality."
+        const text = `I got the ${resultsDetails.title}. My role is ${resultsDetails.role}, and my recommended agent is ${resultsDetails.agent}.`
+
+        const shareMessage = `${text} 
+        
+        ${cta} ${url}`
+        // console.log("ShareMessage : ", shareMessage)
+
         console.log(text)
         console.log(resultsDetails.agent)
 
@@ -34,18 +41,22 @@ export default function ShareButtons({ resultsDetails }) {
             if (navigator.share) {
                 await navigator.share({
                     title: "My ValoTraits Result",
-                    text: text,
+                    text: `${text} ${cta}`,
                     url: window.location.href
                 })
                 console.log("navigator.share worked")
             } else {
-                await navigator.clipboard.writeText(text)
+                await navigator.clipboard.writeText(shareMessage)
+                console.log("ShareMessage : ", shareMessage)
                 console.log("navigator.share unavailable, copied to clipboard")
             }
         } catch (err) {
-            console.log("Sharing Cancelled or failed:", err)
+            if (err.name === "AbortError") {
+                console.log("User cancelled sharing")
+            } else {
+                console.log("Sharing Cancelled or failed:", err)
+            }
         }
-
     }
 
     return (

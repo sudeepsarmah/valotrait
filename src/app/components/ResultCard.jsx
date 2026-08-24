@@ -1,6 +1,7 @@
 import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
 import ShareButtons from "./ShareButtons"
+import ResultShareCard from "./ResultShareCard"
 
 export default function ResultCard({ results }) {
     const recommendedAgents = Object.entries(results.recommended_agents).map(([key, value]) => {
@@ -9,7 +10,6 @@ export default function ResultCard({ results }) {
             agent: value
         }
     })
-
 
     // choosing the agent based on the highest scores
     const entries = Object.entries(results.scores)
@@ -31,6 +31,7 @@ export default function ResultCard({ results }) {
 
     return (
         <>
+            <ResultShareCard />
             <ShareButtons resultsDetails={personalityDetails} />
             {results && (
                 <div className="mt-6">

@@ -1,8 +1,8 @@
 "use client"
+import { toPng } from "html-to-image"
+import { useState, useCallback } from "react"
 
-import { useState } from "react"
-
-export default function ShareButtons({ resultsDetails }) {
+export default function ShareButtons({ resultsDetails, cardRef }) {
 
     const [iscopied, setIsCopied] = useState(false)
 
@@ -59,12 +59,30 @@ export default function ShareButtons({ resultsDetails }) {
         }
     }
 
+    const htmlToImageConvert = () => {
+        if (cardRef.current === null) {
+            return
+        }
+
+        toPng(cardRef.current)
+            .then((dataUrl) => {
+                const link = document.createElement('a')
+                link.download = "my-valotraits-result.png"
+                link.href = dataUrl
+                link.click()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <>
             <button
                 onClick={handleCopy}>{iscopied ? "Copied" : "Copy Link"}
             </button>
             <button onClick={handleShareText}>Share</button>
+            <button onClick={htmlToImageConvert}>Download Result Card</button>
         </>
     )
 }

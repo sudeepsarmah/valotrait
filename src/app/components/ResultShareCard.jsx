@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import ShareButtons from './ShareButtons'
+import ActionButtons from './ActionButtons'
 
 
 export default function ResultShareCard({ results, agentDetails }) {
@@ -35,7 +35,7 @@ export default function ResultShareCard({ results, agentDetails }) {
                 </div>
             </div>
 
-            <ShareButtons cardRef={rersultCardRef} resultsDetails={agentDetails} />
+            <ActionButtons cardRef={rersultCardRef} resultsDetails={agentDetails} />
         </>
     )
 }

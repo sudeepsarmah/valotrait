@@ -1,6 +1,6 @@
 import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
-import ShareButtons from "./ShareButtons"
+import ActionButtons from "./ActionButtons"
 import ResultShareCard from "./ResultShareCard"
 
 export default function ResultCard({ results }) {

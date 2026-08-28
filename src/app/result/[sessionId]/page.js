@@ -1,7 +1,6 @@
 import { createClient } from "@/supabase/server"
 import { Metadata, ResolvingMetadata } from "next"
 import ResultCard from "@/app/components/ResultCard"
-// import ShareButtons from "@/app/components/ShareButtons"
 
 export async function generateMetadata({ params }) {
     const { sessionId } = await params

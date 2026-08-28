@@ -1,14 +1,15 @@
 "use client"
 import { toPng } from "html-to-image"
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import ResultPreviewModal from "./ResultPreviewModal"
+import { useRouter } from 'next/navigation'
 
-export default function ShareButtons({ resultsDetails, cardRef }) {
+export default function ActionButtons({ resultsDetails, cardRef }) {
 
     const [iscopied, setIsCopied] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [previewImg, setPreviewImg] = useState(null)
-
+    const router = useRouter()
 
     const handleCopy = async () => {
         try {
@@ -90,6 +91,10 @@ export default function ShareButtons({ resultsDetails, cardRef }) {
 
     }
 
+    const handleRetake = () => {
+        router.push("/quiz")
+    }
+
     return (
         <>
             <button
@@ -98,6 +103,7 @@ export default function ShareButtons({ resultsDetails, cardRef }) {
             <button onClick={handleShareText}>Share</button>
             <button onClick={generatePreview}>Download Result Card</button>
             {isOpen && <ResultPreviewModal onClose={() => setIsOpen(false)} download={resultImageDownload} dataUrl={previewImg} />}
+            <button onClick={handleRetake}>Retake Quiz</button>
         </>
     )
 }

@@ -1,10 +1,13 @@
 "use client"
 import { toPng } from "html-to-image"
 import { useState, useCallback } from "react"
+import ResultPreviewModal from "./ResultPreviewModal"
 
 export default function ShareButtons({ resultsDetails, cardRef }) {
 
     const [iscopied, setIsCopied] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [previewImg, setPreviewImg] = useState(null)
 
 
     const handleCopy = async () => {
@@ -59,21 +62,32 @@ export default function ShareButtons({ resultsDetails, cardRef }) {
         }
     }
 
-    const htmlToImageConvert = () => {
+
+    const generatePreview = () => {
         if (cardRef.current === null) {
             return
         }
-
-        toPng(cardRef.current)
+        toPng(cardRef.current, { skipFonts: true })
             .then((dataUrl) => {
-                const link = document.createElement('a')
-                link.download = "my-valotraits-result.png"
-                link.href = dataUrl
-                link.click()
+                setPreviewImg(dataUrl)
+                setIsOpen(true)
+
             })
             .catch((err) => {
                 console.log(err)
             })
+    }
+
+
+    const resultImageDownload = () => {
+        if (!previewImg) {
+            return
+        }
+        const link = document.createElement('a')
+        link.download = "my-valotraits-result.png"
+        link.href = previewImg
+        link.click()
+
     }
 
     return (
@@ -82,7 +96,8 @@ export default function ShareButtons({ resultsDetails, cardRef }) {
                 onClick={handleCopy}>{iscopied ? "Copied" : "Copy Link"}
             </button>
             <button onClick={handleShareText}>Share</button>
-            <button onClick={htmlToImageConvert}>Download Result Card</button>
+            <button onClick={generatePreview}>Download Result Card</button>
+            {isOpen && <ResultPreviewModal onClose={() => setIsOpen(false)} download={resultImageDownload} dataUrl={previewImg} />}
         </>
     )
 }

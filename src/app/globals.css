@@ -50,4 +50,10 @@ body {
     @apply hover:bg-blue-700 transition-all focus:outline-none;
     @apply focus-visible:ring-2 focus-visible:ring-blue-500;
   }
+  .modal-overlay{
+     @apply fixed inset-0 z-40 flex items-center justify-center bg-black/70 p-6;
+  }
+  .modal-content{
+    @apply flex max-h-[90vh] max-w-lg w-full flex-col items-center overflow-y-auto rounded-2xl bg-neutral-900 p-6 shadow-2xl;
+  }
 }

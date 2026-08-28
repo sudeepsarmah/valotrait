@@ -1,10 +1,13 @@
 "use client"
+import { toPng } from "html-to-image"
+import { useState, useCallback } from "react"
+import ResultPreviewModal from "./ResultPreviewModal"
 
-import { useState } from "react"
-
-export default function ShareButtons({ resultsDetails }) {
+export default function ShareButtons({ resultsDetails, cardRef }) {
 
     const [iscopied, setIsCopied] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [previewImg, setPreviewImg] = useState(null)
 
 
     const handleCopy = async () => {
@@ -59,12 +62,42 @@ export default function ShareButtons({ resultsDetails }) {
         }
     }
 
+
+    const generatePreview = () => {
+        if (cardRef.current === null) {
+            return
+        }
+        toPng(cardRef.current, { skipFonts: true })
+            .then((dataUrl) => {
+                setPreviewImg(dataUrl)
+                setIsOpen(true)
+
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+
+    const resultImageDownload = () => {
+        if (!previewImg) {
+            return
+        }
+        const link = document.createElement('a')
+        link.download = "my-valotraits-result.png"
+        link.href = previewImg
+        link.click()
+
+    }
+
     return (
         <>
             <button
                 onClick={handleCopy}>{iscopied ? "Copied" : "Copy Link"}
             </button>
             <button onClick={handleShareText}>Share</button>
+            <button onClick={generatePreview}>Download Result Card</button>
+            {isOpen && <ResultPreviewModal onClose={() => setIsOpen(false)} download={resultImageDownload} dataUrl={previewImg} />}
         </>
     )
 }

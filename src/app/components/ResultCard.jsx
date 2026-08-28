@@ -31,8 +31,7 @@ export default function ResultCard({ results }) {
 
     return (
         <>
-            <ResultShareCard />
-            <ShareButtons resultsDetails={personalityDetails} />
+            <ResultShareCard results={results} agentDetails={personalityDetails} />
             {results && (
                 <div className="mt-6">
                     <section className="flex max-w-2xl ">

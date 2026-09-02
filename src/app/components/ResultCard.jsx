@@ -2,27 +2,10 @@ import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
 import ActionButtons from "./ActionButtons"
 import ResultShareCard from "./ResultShareCard"
+import { topAgent } from "@/utilities/topAgent"
 
 export default function ResultCard({ results }) {
-    const recommendedAgents = Object.entries(results.recommended_agents).map(([key, value]) => {
-        return {
-            trait: key,
-            agent: value
-        }
-    })
-
-    // choosing the agent based on the highest scores
-    const entries = Object.entries(results.scores)
-    const highestRatedTrait = entries.reduce((max, current) => current[1] > max[1] ? current : max)
-    console.log("highestTrait: ", highestRatedTrait)
-
-    const highestRatedAgent = recommendedAgents.find(agent => agent.trait.toUpperCase() === highestRatedTrait[0].toUpperCase())
-
-    const personalityDetails = {
-        title: results.personality_name,
-        agent: highestRatedAgent.agent,
-        role: results.recommended_role
-    }
+const personalityDetails = topAgent(results)
 
     // logging results
     console.log("recommended: ", recommendedAgents)

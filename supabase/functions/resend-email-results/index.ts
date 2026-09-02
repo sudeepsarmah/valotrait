@@ -4,8 +4,8 @@
 
 // Setup type definitions for built-in Supabase Runtime APIs
 import "@supabase/functions-js/edge-runtime.d.ts";
+import { error } from "node:console";
 import { withSupabase } from "npm:@supabase/server@^1";
-import { createClient } from "@/supabase/server";
 
 console.log("Hello from Functions!");
 
@@ -13,43 +13,66 @@ console.log("Hello from Functions!");
 // Use publishable for Client-facing, key-validated endpoints
 // Use secret for Server-to-server, internal calls
 export default {
-  fetch: withSupabase({ auth: "none" }, async (req) => {
+  fetch: withSupabase({ auth: "none" }, async (req, ctx) => {
     let email: string | undefined;
     let session_id: string | undefined;
-    const body = await req.json();
-    email = body.email;
-    session_id = body.session_id;
+    // Safely parse the JSON body first
     try {
-      const supabaseAdmin = await createClient(
-        Deno.env.get("NEXT_PUBLIC_SUPABASE_URL")!,
-        Deno.env.get("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY")!,
+      const body = await req.json();
+      email = body?.email;
+      session_id = body?.session_id;
+    } catch (err) {
+      return Response.json(
+        { error: "Invalid or missing JSON req body" },
+        { status: 400 },
       );
-
-      const { data, error } = await supabaseAdmin
+    }
+    // Validate that the required fields are present
+    if (!email || !session_id) {
+      return Response.json(
+        { error: "Missing required fields: Email & session_id" },
+        { status: 400 },
+      );
+    }
+    // Query the database using the admin client
+    try {
+      const { data, error } = await ctx.supabaseAdmin
         .from("results")
         .select("*")
         .eq("session_id", session_id)
-        .eq("email", email)
         .single();
 
-      if (error) throw error;
-    } catch (error) {
+      const htmlEmail = `
+        <h1>ValoTraits</h1>
+            <p>You got : </p>
+            <h4>${data.personality_name}</h4>
+            <p>Role</p>
+            <h5>${data.role}</h5>
+            <p>Top Agent</p>
+            <h5>${data.top_agent}</h5>
+            <h3><a href="">View my full result</a></h3>
+        `;
+      // Handling specific database/query errors
+      if (error) {
+        // If single() finds 0 rows, it returns a 406 / PGRST116 error code
+        if (error.code === "PGRST116") {
+          return Response.json(
+            { error: "No results found matching those credentials." },
+            { status: 404 },
+          );
+        }
+        return Response.json(
+          { error: error.message },
+          { status: 500 },
+        );
+      }
+      return Response.json({ data });
+    } catch (dbError) {
       return Response.json(
-        { error: "Missing JSON req body" },
-        { status: 400 },
+        { error: "Internal server error querying database" },
+        { status: 500 },
       );
     }
-
-    if (!email || !session_id) {
-      return Response.json(
-        { error: "Missing required fields" },
-        { status: 400 },
-      );
-    }
-
-    return Response.json({
-      message: `{email} - {session_id}`,
-    });
   }),
 };
 

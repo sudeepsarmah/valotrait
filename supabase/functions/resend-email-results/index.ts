@@ -15,7 +15,23 @@ console.log("Hello from Functions!");
 // Use secret for Server-to-server, internal calls
 export default {
   fetch: withSupabase({ auth: "none" }, async (req, ctx) => {
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     const siteUrl = Deno.env.get("SITE_URL");
+
+    // checking the Resend API key
+    if (!RESEND_API_KEY) {
+      return Response.json(
+        { error: "Resend API key is not configured." },
+        { status: 500 },
+      );
+    }
+
+    if (!siteUrl) {
+      return Response.json(
+        { error: "Invalid or missing site URL" },
+        { status: 500 },
+      );
+    }
 
     let email: string | undefined;
     let session_id: string | undefined;
@@ -40,13 +56,8 @@ export default {
     }
 
     // creating the finalUrl
-    if (!siteUrl) {
-      return Response.json(
-        { error: "Invalid or missing site URL" },
-        { status: 500 },
-      );
-    }
     const finalUrl = `${siteUrl}/result/${session_id}`;
+
     // Query the database using the admin client
     try {
       const { data, error } = await ctx.supabaseAdmin
@@ -78,12 +89,41 @@ export default {
             <h5>${data.recommended_role}</h5>
             <p>Top Agent</p>
             <h5>${highestAgent.agent}</h5>
-            <h3><a href="${finalUrl}">View my full result</a></h3>
-        `;
-      return Response.json({ data });
-    } catch (dbError) {
+            <h3><a href="${finalUrl}">View my full result</a></h3>`;
+
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "valotraits <onboarding@resend.dev>",
+          to: [email],
+          subject: "ValoTraits Results",
+          html: htmlEmail,
+        }),
+      });
+
+      const resendData = await res.json();
+
+      if (!res.ok) {
+        console.error("Resend error: ", resendData);
+        return Response.json(
+          { error: "Failed to send result email" },
+          { status: 502 },
+        );
+      }
+
+      return Response.json({
+        success: true,
+        message: "Result email sent successfully",
+        id: resendData.id,
+      });
+    } catch (error) {
+      console.error("Function error: ", error);
       return Response.json(
-        { error: "Internal server error querying database" },
+        { error: "Internal server error." },
         { status: 500 },
       );
     }

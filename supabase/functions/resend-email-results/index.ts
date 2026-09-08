@@ -7,6 +7,7 @@ import "@supabase/functions-js/edge-runtime.d.ts";
 import { error } from "node:console";
 import { withSupabase } from "npm:@supabase/server@^1";
 import { topAgent } from "../_shared/topAgent.js";
+import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 
 console.log("Hello from Functions!");
 
@@ -15,19 +16,35 @@ console.log("Hello from Functions!");
 // Use secret for Server-to-server, internal calls
 export default {
   fetch: withSupabase({ auth: "none" }, async (req, ctx) => {
+    // Handling browser CORS preflight
+    if (req.method === "OPTIONS") {
+      return new Response("ok", {
+        headers: corsHeaders,
+      });
+    }
+    const jsonResponse = (
+      body: unknown,
+      status = 200,
+    ) => {
+      return Response.json(body, {
+        status,
+        headers: corsHeaders,
+      });
+    };
+
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     const siteUrl = Deno.env.get("SITE_URL");
 
     // checking the Resend API key
     if (!RESEND_API_KEY) {
-      return Response.json(
+      return jsonResponse(
         { error: "Resend API key is not configured." },
         { status: 500 },
       );
     }
 
     if (!siteUrl) {
-      return Response.json(
+      return jsonResponse(
         { error: "Invalid or missing site URL" },
         { status: 500 },
       );
@@ -41,17 +58,17 @@ export default {
       email = body?.email;
       session_id = body?.session_id;
     } catch (err) {
-      return Response.json(
+      return jsonResponse(
         { error: "Invalid or missing JSON req body" },
-        { status: 400 },
+        400,
       );
     }
 
     // Validate that the required fields are present
     if (!email || !session_id) {
-      return Response.json(
+      return jsonResponse(
         { error: "Missing required fields: Email & session_id" },
-        { status: 400 },
+        400,
       );
     }
 
@@ -70,14 +87,14 @@ export default {
       if (error) {
         // If single() finds 0 rows, it returns a 406 / PGRST116 error code
         if (error.code === "PGRST116") {
-          return Response.json(
+          return jsonResponse(
             { error: "No results found for this session." },
-            { status: 404 },
+            404,
           );
         }
-        return Response.json(
+        return jsonResponse(
           { error: error.message },
-          { status: 500 },
+          500,
         );
       }
       const highestAgent = topAgent(data);
@@ -109,22 +126,22 @@ export default {
 
       if (!res.ok) {
         console.error("Resend error: ", resendData);
-        return Response.json(
+        return jsonResponse(
           { error: "Failed to send result email" },
-          { status: 502 },
+          502,
         );
       }
 
-      return Response.json({
+      return jsonResponse({
         success: true,
         message: "Result email sent successfully",
         id: resendData.id,
       });
     } catch (error) {
       console.error("Function error: ", error);
-      return Response.json(
+      return jsonResponse(
         { error: "Internal server error." },
-        { status: 500 },
+        500,
       );
     }
   }),

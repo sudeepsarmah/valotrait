@@ -2,19 +2,21 @@ import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
 import ActionButtons from "./ActionButtons"
 import ResultShareCard from "./ResultShareCard"
-import { topAgent } from "@/utilities/topAgent"
+import { topAgent as getTopAgent } from "@/app/lib/topAgent"
+import EmailResults from "./EmailResults"
 
 export default function ResultCard({ results }) {
-const personalityDetails = topAgent(results)
+const personalityDetails = getTopAgent(results)
 
     // logging results
-    console.log("recommended: ", recommendedAgents)
-    console.log("highestAgent: ", highestRatedAgent)
-    console.log("agent:", personalityDetails.agent)
+    console.log("recommended: ", personalityDetails.role)
+    console.log("highestAgent: ", personalityDetails.agent)
+    
 
     return (
         <>
             <ResultShareCard results={results} agentDetails={personalityDetails} />
+            <EmailResults sessionId={results.session_id}/>
             {results && (
                 <div className="mt-6">
                     <section className="flex max-w-2xl ">

@@ -2,36 +2,21 @@ import TraitChart from "./recharts/TraitChart"
 import DistributionBarChart from "./recharts/DistributionBarChart"
 import ActionButtons from "./ActionButtons"
 import ResultShareCard from "./ResultShareCard"
+import { topAgent as getTopAgent } from "@/app/lib/topAgent"
+import EmailResults from "./EmailResults"
 
 export default function ResultCard({ results }) {
-    const recommendedAgents = Object.entries(results.recommended_agents).map(([key, value]) => {
-        return {
-            trait: key,
-            agent: value
-        }
-    })
-
-    // choosing the agent based on the highest scores
-    const entries = Object.entries(results.scores)
-    const highestRatedTrait = entries.reduce((max, current) => current[1] > max[1] ? current : max)
-    console.log("highestTrait: ", highestRatedTrait)
-
-    const highestRatedAgent = recommendedAgents.find(agent => agent.trait.toUpperCase() === highestRatedTrait[0].toUpperCase())
-
-    const personalityDetails = {
-        title: results.personality_name,
-        agent: highestRatedAgent.agent,
-        role: results.recommended_role
-    }
+const personalityDetails = getTopAgent(results)
 
     // logging results
-    console.log("recommended: ", recommendedAgents)
-    console.log("highestAgent: ", highestRatedAgent)
-    console.log("agent:", personalityDetails.agent)
+    console.log("recommended: ", personalityDetails.role)
+    console.log("highestAgent: ", personalityDetails.agent)
+    
 
     return (
         <>
             <ResultShareCard results={results} agentDetails={personalityDetails} />
+            <EmailResults sessionId={results.session_id}/>
             {results && (
                 <div className="mt-6">
                     <section className="flex max-w-2xl ">

@@ -1,5 +1,4 @@
 import { createClient } from "@/supabase/server"
-import { Metadata, ResolvingMetadata } from "next"
 import ResultCard from "@/app/components/ResultCard"
 
 export async function generateMetadata({ params }) {

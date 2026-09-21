@@ -1,4 +1,5 @@
 import { createClient } from "@/supabase/server"
+
 const migratePendingResults = async (pendingStorageId) => {
     if (!pendingStorageId) {
         console.log("No session_id found in localStorage.")
@@ -8,7 +9,7 @@ const migratePendingResults = async (pendingStorageId) => {
     const { data: { user }, error } = await supabase.auth.getUser()
 
     if (error || !user) {
-        console.log("Unauthorized user:", error.message)
+        console.log("Unauthorized user:", error?.message)
         return { success: false }
     }
     const authenticatedUserId = user.id

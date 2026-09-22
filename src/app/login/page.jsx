@@ -2,6 +2,7 @@
 import { createClient } from "@/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { migratePendingResultClient } from "../lib/migratePendingResultClient";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -31,10 +32,6 @@ export default function LoginPage() {
     if (error) {
       console.log("OAuth error", error.message);
     }
-    const {
-      data: { session },
-      sessionError,
-    } = await supabase.auth.getSession();
   };
 
   // Sign in with Email and Password
@@ -55,6 +52,9 @@ export default function LoginPage() {
       setEmail("");
       return;
     }
+
+    await migratePendingResultClient();
+
     router.push("/quiz");
     router.refresh();
   };
@@ -86,14 +86,16 @@ export default function LoginPage() {
       setPassword("");
       return;
     }
-    if (data.session) {
-      router.push("/quiz");
-      router.refresh();
+    if (!data.session) {
+      setSignUpMessage(
+        "Account created. Check your email to confirm your account.",
+      );
+      setPassword("");
       return;
     }
-    setSignUpMessage(
-      "Account created. Check your email to confirm your account.",
-    );
+    await migratePendingResultClient();
+    router.push("/quiz");
+    router.refresh();
     setPassword("");
   };
 

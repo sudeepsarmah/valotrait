@@ -23,7 +23,10 @@ export async function GET(request) {
 
         if (!error) {
             // Forward the user to the intended destination or dashboard
-            return NextResponse.redirect(`${origin}${next}`);
+            const completionUrl = new URL("/auth/callback/complete", origin)
+            completionUrl.searchParams.set("next", next)
+
+            return NextResponse.redirect(completionUrl)
         }
     }
 

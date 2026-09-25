@@ -14,6 +14,11 @@ export async function Dashboard() {
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
 
+  if (resultsError) {
+    console.log("Database error")
+    return
+  }
+
   return (
     <>
       <h1>this is the dashboard</h1>

@@ -1,7 +1,8 @@
 import { createClient } from "@/supabase/server"
 import { redirect } from "next/navigation"
+import { topAgent as getTopAgent } from "../lib/topAgent"
 
-export async function Dashboard() {
+export default async function Dashboard() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
@@ -10,7 +11,7 @@ export async function Dashboard() {
 
   const { data: results, error: resultsError } = await supabase
     .from("results")
-    .select("session_id, personality_name, created_at, codenames, recommended_role")
+    .select("session_id, personality_name, created_at, codenames, top_agent, top_role")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
 
@@ -18,6 +19,10 @@ export async function Dashboard() {
     console.log("Database error")
     return
   }
+
+  console.log("Dashboard")
+  console.log(results);
+  console.log(resultsError);
 
   return (
     <>

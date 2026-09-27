@@ -1,6 +1,6 @@
 import { createClient } from "@/supabase/server"
 import { redirect } from "next/navigation"
-import { topAgent as getTopAgent } from "../lib/topAgent"
+import ResultSummaryCard from "./ResultSummaryCard"
 
 export default async function Dashboard() {
   const supabase = await createClient()
@@ -26,7 +26,20 @@ export default async function Dashboard() {
 
   return (
     <>
-      <h1>this is the dashboard</h1>
+      <main className="p-6">
+        <h1 className="mb-6 text-3xl font-bold">
+          Your Results
+        </h1>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {results.map((result) => (
+            <ResultSummaryCard
+              key={result.session_id}
+              results={result}
+            />
+          ))}
+        </div>
+      </main>
     </>
   )
 }

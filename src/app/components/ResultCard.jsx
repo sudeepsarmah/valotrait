@@ -21,19 +21,18 @@ export default function ResultCard({ results }) {
           </section>
 
           <section className="flex flex-col md:flex-row items-center ">
-            <div className="flex-1 min-w-0">
+            <div className="flex-2 min-w-0">
+              <div>
+                <h3>Your valorant role : </h3>
+                <h4>{results.recommended_role}</h4>
+                <h2>Role Description -</h2>
+                <p> {results.description_template}</p>
+              </div>
+            </div>
+            {/* Removed distribution bar chart for the time being */}
+            <div className="flex-1 min-w-0  ">
               <TraitChart data={results} />
             </div>
-            <div className="flex-2 min-w-0  ">
-              <DistributionBarChart />
-            </div>
-          </section>
-
-          <section>
-            <h3>Your valorant role : </h3>
-            <h4>{results.recommended_role}</h4>
-            <h2>Role Description -</h2>
-            <p> {results.description_template}</p>
           </section>
 
           <section className="flex justify-center gap-4 flex-col mb-6">

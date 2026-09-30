@@ -1,5 +1,5 @@
 import { createClient } from "../../supabase/client"
-
+import { topAgent as getTopAgent } from "./topAgent"
 
 const calculateTraitScores = (selectedAnswers, questions) => {
     const optionsWeight = {
@@ -11,7 +11,7 @@ const calculateTraitScores = (selectedAnswers, questions) => {
     }
 
     let traitScore = {
-        AIM: 0, BRAIN: 0, SUPPORT: 0, ENTRY: 0, DASH: 0, RAT: 0, CASUALTY: 0, SURVIVOR: 0
+        AIM: 0, BRAIN: 0, SUPPORT: 0, ENTRY: 0, DASH: 0, RAT: 0, CASUALITY: 0, SURVIVOR: 0
     }
 
     for (let i = 0; i < questions.length; i++) {
@@ -59,7 +59,7 @@ const generatePersonalityCode = (traitScore) => {
             right_code: "R"
         },
         {
-            left_trait: "CASUALTY",
+            left_trait: "CASUALITY",
             left_code: "C",
 
             right_trait: "SURVIVOR",
@@ -142,6 +142,9 @@ const buildResult = (personalityRow, traitScores) => {
 }
 
 const saveResult = async (resultObject, sessionId, userId) => {
+    const topAgentDetails = getTopAgent(resultObject)
+    console.log("recommended/personality.js: ", topAgentDetails.role)
+    console.log("highestAgent/personality.js: ", topAgentDetails.agent)
     const supabase = createClient()
     const { data: resultsData, error: resultsError } = await supabase
         .from("results")
@@ -156,7 +159,9 @@ const saveResult = async (resultObject, sessionId, userId) => {
             personality_name: resultObject.personality_name,
             traits: resultObject.traits,
             session_id: sessionId,
-            user_id: userId
+            user_id: userId,
+            top_agent: topAgentDetails.agent,
+            top_role: topAgentDetails.role
         })
         .select()
         .single()

@@ -1,0 +1,18 @@
+Dashboard
+│
+├── Heading
+│
+└── Results Grid
+    │
+    ├── Result Card
+    │   ├── Personality name
+    │   ├── Role badge
+    │   ├── Date taken
+    │   ├── Top agent
+    │   └── View full result
+    │
+    ├── Result Card
+    │   └── ...
+    │
+    └── Result Card
+        └── ...

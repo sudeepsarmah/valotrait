@@ -141,7 +141,7 @@ const buildResult = (personalityRow, traitScores) => {
     return resultObject
 }
 
-const saveResult = async (resultObject, sessionId, userId) => {
+const saveResult = async (resultObject, sessionId, userId, claimToken) => {
     const topAgentDetails = getTopAgent(resultObject)
     console.log("recommended/personality.js: ", topAgentDetails.role)
     console.log("highestAgent/personality.js: ", topAgentDetails.agent)
@@ -159,9 +159,11 @@ const saveResult = async (resultObject, sessionId, userId) => {
             personality_name: resultObject.personality_name,
             traits: resultObject.traits,
             session_id: sessionId,
+            claim_token: claimToken,
             user_id: userId,
             top_agent: topAgentDetails.agent,
-            top_role: topAgentDetails.role
+            top_role: topAgentDetails.role,
+            is_public: true
         })
         .select()
         .single()

@@ -87,14 +87,14 @@ export default function QuizPage({ questions }) {
       38: 1,
       39: 2,
     };
-
     const sessionId = crypto.randomUUID();
+
     const supabase = await createClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
     const userId = user?.id ?? null;
-
+    const claimToken = userId ? null : crypto.randomUUID();
     const traitScores = calculateTraitScores(answers, questions);
     const personalityCode = generatePersonalityCode(traitScores);
     const personalityRow = await getPersonality(personalityCode);
@@ -107,7 +107,12 @@ export default function QuizPage({ questions }) {
 
     console.log("Result object:", resultObject);
 
-    const savedResult = await saveResult(resultObject, sessionId, userId);
+    const savedResult = await saveResult(
+      resultObject,
+      sessionId,
+      userId,
+      claimToken,
+    );
 
     console.log("Saved result:", savedResult);
     if (!savedResult) {
@@ -117,6 +122,7 @@ export default function QuizPage({ questions }) {
 
     if (!userId) {
       localStorage.setItem("valotraits_session_id", sessionId);
+      localStorage.setItem("valotraits_claim_token", claimToken);
     }
 
     // console.log("Personality Row :", personalityRow)

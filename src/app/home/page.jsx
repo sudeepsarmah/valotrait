@@ -34,7 +34,7 @@ export default function Home() {
         <div className="personalities">The Ice Vein</div>
       </div>
 
-      <section className="grid grid-cols-3 gap-6 mt-8">
+      <section className="grid grid-cols-3 gap-6 mt-6">
         <div>
           <h4>Take the test</h4>
           <p>

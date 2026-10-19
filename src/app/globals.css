@@ -23,7 +23,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  scroll-padding-top: 80px
+  scroll-padding-top: 80px;
 }
 
 @layer components {
@@ -33,27 +33,36 @@ body {
     @apply focus:outline-none transition-all duration-200;
     @apply hover:bg-blue-400 cursor-pointer;
   }
-  .cards{
+  .cards {
     @apply bg-white border border-slate-200 shadow-sm w-full;
     @apply max-w-sm rounded-lg mx-auto mt-6 p-4 sm:p-6 dark:bg-neutral-800;
     @apply dark:border-neutral-700;
   }
-  .h3-cards{
+  .h3-cards {
     @apply text-slate-900 text-base font-semibold dark:text-slate-50;
   }
-  .p-cards{
+  .p-cards {
     @apply mt-2 text-sm text-slate-600 leading-relaxed dark:text-slate-400;
   }
-  .href-cards{
+  .href-cards {
     @apply inline-block mt-6 py-2 px-3.5 text-sm rounded-md font-semibold;
-    @apply cursor-pointer text-white border border-blue-600 bg-blue-600 ;
+    @apply cursor-pointer text-white border border-blue-600 bg-blue-600;
     @apply hover:bg-blue-700 transition-all focus:outline-none;
     @apply focus-visible:ring-2 focus-visible:ring-blue-500;
   }
-  .modal-overlay{
-     @apply fixed inset-0 z-40 flex items-center justify-center bg-black/70 p-6;
+  .modal-overlay {
+    @apply fixed inset-0 z-40 flex items-center justify-center bg-black/70 p-6;
   }
-  .modal-content{
+  .modal-content {
     @apply flex max-h-[90vh] max-w-lg w-full flex-col items-center overflow-y-auto rounded-2xl bg-neutral-900 p-6 shadow-2xl;
+  }
+  .cta {
+    @apply bg-[#FF4655] cursor-pointer hover:bg-[#ff293b] rounded-2xl py-1 px-2;
+  }
+  .cta-text {
+    @apply font-bold text-[#0F1923];
+  }
+  .personalities {
+    @apply bg-[#0F1923] text-[#ECE8E1] pl-4 pt-2 min-h-30;
   }
 }

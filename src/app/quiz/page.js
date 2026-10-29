@@ -28,7 +28,6 @@ export default async function Home() {
     return (
         <>
             <div>
-                <h2>This is the quiz page</h2>
                 <p>{user ? `Signed in as ${user.email}` : "Not signed in"}</p>
                 <QuizPage
                     questions={questionsData}

@@ -10,28 +10,42 @@ export default async function Navbar() {
   } = await supabase.auth.getUser();
   return (
     <>
-      <nav className="flex flex-row gap-4 justify-between bg-[#0F1923] py-2">
-        <div>
-          <h2>ValoTraits</h2>
-        </div>
-        <div className="flex flex-row gap-4 items-center">
-          {user ? (
-            <>
-              <span>{user.email}</span>
-              <LogoutButton />
-            </>
-          ) : (
-            <a href="/login">Sign In</a>
-          )}
-          <div>
-            <p className="cta">
-              <Link href={"/quiz"} className="cta-text">
-                Take the quiz
+      <header className="site-header">
+        <nav className="site-nav" aria-label="Main navigation">
+          <Link href="/" className="nav-brand">
+            <span className="brand-mark">V</span>
+            <span>
+              VALO<span className="text-accent">TRAITS</span>
+            </span>
+          </Link>
+
+          <div className="nav-links">
+            <Link href="/#personalities" className="nav-text-link">
+              Personalities
+            </Link>
+
+            {user ? (
+              <>
+                <Link href="/dashboard" className="nav-text-link">
+                  Dashboard
+                </Link>
+
+                <span className="nav-user">{user.email || "Signed in"}</span>
+
+                <LogoutButton />
+              </>
+            ) : (
+              <Link href="/login" className="nav-text-link">
+                Sign in
               </Link>
-            </p>
+            )}
+
+            <Link href="/quiz" className="nav-cta">
+              Take the quiz <span aria-hidden="true">↗</span>
+            </Link>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
     </>
   );
 }

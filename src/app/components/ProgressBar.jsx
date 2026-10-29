@@ -1,37 +1,42 @@
-
 export default function ProgressBar({ progress, ansCount, totalQuestions }) {
-    return (
-        <>
+  return (
+    <div className="w-full">
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#A5ADB7]">
+            Your Progress
+          </p>
 
-            <div className="sticky top-0 z-50 bg-black/90 backdrop-blur border-b border-zinc-800 px-6 py-4">
-                <div className="max-w-5xl mx-auto">
-                    <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm text-zinc-400">
-                            {ansCount} / {totalQuestions} answered
-                        </span>
+          <p className="font-semibold text-[#ECE8E1]">
+            <span className="mr-2 text-2xl text-[#00F5D4]">{ansCount}</span>/{" "}
+            {totalQuestions} answered
+          </p>
+        </div>
 
-                        <span className="text-sm font-medium">
-                            {Math.round(progress)}%
-                        </span>
-                    </div>
+        <span className="text-2xl font-semibold text-[#FF4655]">
+          {Math.round(progress)}%
+        </span>
+      </div>
 
-                    <div className="w-full h-3 bg-zinc-800 rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-blue-600 transition-all duration-300"
-                            style={{
-                                width: `${progress}%`,
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+      {/* Progress track */}
+      <div className="h-2 w-full overflow-hidden rounded-full bg-[#263341]">
+        {/* Filled portion */}
+        <div
+          className="h-full rounded-full bg-[#FF4655] transition-all duration-300 ease-out"
+          style={{
+            width: `${Math.min(100, Math.max(0, progress))}%`,
+          }}
+        />
+      </div>
+    </div>
+  );
 }
 
-{/* Simple progress bar - 
+{
+  /* Simple progress bar - 
     <div className="flex justify-center gap-6">
                 <h2>{ansCount} out of 44 questions answered </h2>
                 <progress className="border  h- w-2xl sticky top-1" value={progress} max={100}></progress>
                 {`${Math.floor(progress)} %`}
-            </div> */}
+            </div> */
+}

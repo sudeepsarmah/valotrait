@@ -141,107 +141,195 @@ export default function QuizPage({ questions }) {
   console.log("Radio options - ", selectedAnswers);
 
   return (
-    <>
-      <ProgressBar
-        progress={percentage}
-        ansCount={answeredCount}
-        totalQuestions={questions.length}
-      />
-      <div>
+    <main className="quiz-page">
+      <section className="quiz-header">
+        <div className="quiz-heading">
+          <span className="quiz-eyebrow">
+            <span className="quiz-status-dot" />
+            VALOTRAITS / PERSONALITY ASSESSMENT
+          </span>
+
+          <h1 className="quiz-title">
+            Discover your <span>playstyle.</span>
+          </h1>
+
+          <p className="quiz-description">
+            Answer each statement based on how you naturally play. Choose the
+            response that best reflects your usual behaviour.
+          </p>
+        </div>
+
         <button
-          className="border border-green-500 bg-amber-400 text-zinc-950"
+          type="button"
+          className="quiz-submit-button"
           onClick={() => handleSubmit()}
         >
-          Submit
+          Submit Answers <span aria-hidden="true">↗</span>
         </button>
-        <h2>Answer the following question:</h2>
-        {questions.map((question, index) => {
-          return (
-            <div
-              key={question.id}
-              ref={(node) => {
-                const map = getMap();
-                if (node) {
-                  map.set(question.id, node);
-                }
-                return () => {
-                  map.delete(question.id);
-                };
-              }}
-              className="rounded-3xl border border-zinc-200 p-6 mb-4 max-w-2xl cursor-pointer"
-            >
-              <span>{question.display_order}</span>
-              <p className="">{question.question_text}</p>
-              <div className="flex justify-center gap-12 mt-6">
-                <span>Not Likely</span>
-                <div className="flex gap-2 justify-center">
-                  <label htmlFor="">
-                    <input
-                      type="radio"
-                      name={`${question.id}Options`}
-                      value="1"
-                      className="radio-circle"
-                      id={`${question.id}1`}
-                      checked={selectedAnswers[question.display_order] === "1"}
-                      onChange={(e) => handleRadioChange(e, index)}
-                    />
-                  </label>
-                  <label htmlFor="">
-                    <input
-                      type="radio"
-                      name={`${question.id}Options`}
-                      value="2"
-                      className="radio-circle"
-                      id={`${question.id}2`}
-                      checked={selectedAnswers[question.display_order] === "2"}
-                      onChange={(e) => handleRadioChange(e, index)}
-                    />
-                  </label>
-                  <label htmlFor="">
-                    <input
-                      type="radio"
-                      name={`${question.id}Options`}
-                      value="3"
-                      className="radio-circle"
-                      id={`${question.id}3`}
-                      checked={selectedAnswers[question.display_order] === "3"}
-                      onChange={(e) => handleRadioChange(e, index)}
-                    />
-                  </label>
-                  <label htmlFor="">
-                    <input
-                      type="radio"
-                      name={`${question.id}Options`}
-                      value="4"
-                      className="radio-circle"
-                      id={`${question.id}4`}
-                      checked={selectedAnswers[question.display_order] === "4"}
-                      onChange={(e) => handleRadioChange(e, index)}
-                    />
-                  </label>
-                  <label htmlFor="">
-                    <input
-                      type="radio"
-                      name={`${question.id}Options`}
-                      value="5"
-                      className="radio-circle"
-                      id={`${question.id}5`}
-                      checked={selectedAnswers[question.display_order] === "5"}
-                      onChange={(e) => handleRadioChange(e, index)}
-                    />
-                  </label>
+      </section>
+
+      <section className="quiz-progress-panel">
+        <div className="quiz-progress-heading">
+          <div>
+            <span className="quiz-section-label">YOUR PROGRESS</span>
+
+            <p className="quiz-progress-count">
+              <span>{answeredCount}</span>
+              <span className="quiz-progress-divider">/</span>
+              {questions.length} answered
+            </p>
+          </div>
+
+          <span className="quiz-progress-percentage">
+            {Math.round(percentage)}%
+          </span>
+        </div>
+
+        {/* Actual progress bar */}
+        <div
+          className="quiz-progress-track"
+          role="progressbar"
+          aria-valuenow={Math.round(percentage)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Quiz completion"
+        >
+          <div
+            className="quiz-progress-fill"
+            style={{ width: `${percentage}%` }}
+          />
+        </div>
+      </section>
+
+      <section className="quiz-questions-section">
+        <div className="quiz-section-heading">
+          <div>
+            <span className="quiz-section-label">THE ASSESSMENT</span>
+            <h2>Know your game.</h2>
+            <p>
+              Select one response for every statement, from least likely to most
+              likely.
+            </p>
+          </div>
+
+          <span className="quiz-question-total">
+            {String(questions.length).padStart(2, "0")} QUESTIONS
+          </span>
+        </div>
+
+        <div className="quiz-question-list">
+          {questions.map((question, index) => {
+            const answer = selectedAnswers[question.display_order];
+            const isAnswered = Boolean(answer);
+
+            return (
+              <div
+                key={question.id}
+                ref={(node) => {
+                  const map = getMap();
+
+                  if (node) {
+                    map.set(question.id, node);
+                  } else {
+                    map.delete(question.id);
+                  }
+                }}
+                className={`quiz-question-card ${
+                  isAnswered ? "is-answered" : ""
+                }`}
+              >
+                <div className="quiz-question-heading">
+                  <span className="quiz-question-number">
+                    {String(question.display_order).padStart(2, "0")}
+                  </span>
+
+                  <p className="quiz-question-text">{question.question_text}</p>
+
+                  {isAnswered && (
+                    <span
+                      className="quiz-answered-indicator"
+                      aria-label="Question answered"
+                      title="Answered"
+                    >
+                      ✓
+                    </span>
+                  )}
                 </div>
-                <span>Most Likely</span>
-                {selectedAnswers[question.display_order] ? (
-                  <span className="text-lime-300">✓</span>
-                ) : (
-                  ""
-                )}
+
+                <div className="quiz-response-area">
+                  <div className="quiz-scale-labels">
+                    <span>NOT LIKELY</span>
+                    <span>MOST LIKELY</span>
+                  </div>
+
+                  <div
+                    className="quiz-options"
+                    role="group"
+                    aria-label={`Response for question ${question.display_order}`}
+                  >
+                    {[1, 2, 3, 4, 5].map((value) => {
+                      const optionValue = String(value);
+                      const inputId = `${question.id}-${value}`;
+                      const isSelected = answer === optionValue;
+
+                      return (
+                        <label
+                          key={value}
+                          htmlFor={inputId}
+                          className={`quiz-option ${
+                            isSelected ? "is-selected" : ""
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name={`${question.id}Options`}
+                            value={optionValue}
+                            className="radio-circle"
+                            id={inputId}
+                            checked={
+                              selectedAnswers[question.display_order] ===
+                              optionValue
+                            }
+                            onChange={(e) => handleRadioChange(e, index)}
+                          />
+
+                          <span>{value}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    </>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="quiz-bottom-panel">
+        <div>
+          <span className="quiz-section-label">READY TO FIND YOUR TYPE?</span>
+
+          <h2>
+            {answeredCount === questions.length
+              ? "Assessment complete."
+              : "Almost there."}
+          </h2>
+
+          <p>
+            {answeredCount === questions.length
+              ? "Submit your answers to discover your Valorant personality."
+              : `${questions.length - answeredCount} questions remaining. Continue answering to complete your assessment.`}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className="quiz-submit-button"
+          onClick={() => handleSubmit()}
+        >
+          Submit Answers <span aria-hidden="true">↗</span>
+        </button>
+      </section>
+    </main>
   );
 }

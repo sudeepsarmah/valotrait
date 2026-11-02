@@ -11,10 +11,10 @@ export default async function Home() {
 
   const personalityList = personalities ?? [];
   return (
-    <>
+    <main className="w-full min-w-0 overflow-x-clip">
       {/* Hero */}
       <section className="hero-section">
-        <div className="hero-content">
+        <div className="hero-content min-w-0">
           <p className="eyebrow">
             <span className="status-dot" />
             YOUR PLAYSTYLE. DECODED.
@@ -217,11 +217,13 @@ export default async function Home() {
 
         {/* Bottom CTA */}
         <div className="bottom-cta">
-          <div>
+          <div className="min-w-0">
             <p className="eyebrow">YOUR TYPE IS WAITING</p>
+
             <h3>
               READY TO FIND <span className="text-accent">YOUR EDGE?</span>
             </h3>
+
             <p>
               Take the quiz and discover the personality behind your playstyle.
             </p>
@@ -232,6 +234,6 @@ export default async function Home() {
           </Link>
         </div>
       </section>
-    </>
+    </main>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createClient } from "../../supabase/client";
 import ProgressBar from "../components/ProgressBar";
 import {
@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 export default function QuizPage({ questions }) {
   // console.log(questions)
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [showFloatingProgress, setShowFloatingProgress] = useState(false);
   const questionsRef = useRef(null);
   const router = useRouter();
 
@@ -44,6 +45,20 @@ export default function QuizPage({ questions }) {
       inline: "center",
     });
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowFloatingProgress(window.scrollY > 300);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleRadioChange = (e, index) => {
     const updatedState = {
@@ -141,7 +156,26 @@ export default function QuizPage({ questions }) {
   console.log("Radio options - ", selectedAnswers);
 
   return (
-    <main className="quiz-page">
+    <main className="quiz-page w-full min-w-0 overflow-x-clip">
+      {/* Floating progress */}
+      <div
+        className={`fixed inset-x-0 top-0 z-[100] border-b border-[#263341] bg-[#080B10]/95 px-4 py-3 shadow-lg backdrop-blur-md transition-all duration-300 sm:px-8 ${
+          showFloatingProgress
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full pointer-events-none opacity-0"
+        }`}
+      >
+        <div className="mx-auto max-w-5xl">
+          <ProgressBar
+            progress={percentage}
+            ansCount={answeredCount}
+            totalQuestions={questions.length}
+            compact
+          />
+        </div>
+      </div>
+
+      {/* Header */}
       <section className="quiz-header">
         <div className="quiz-heading">
           <span className="quiz-eyebrow">
@@ -161,49 +195,26 @@ export default function QuizPage({ questions }) {
 
         <button
           type="button"
-          className="quiz-submit-button"
+          className="quiz-submit-button min-h-11 w-full sm:w-auto"
           onClick={() => handleSubmit()}
         >
           Submit Answers <span aria-hidden="true">↗</span>
         </button>
       </section>
 
-      <section className="quiz-progress-panel">
-        <div className="quiz-progress-heading">
-          <div>
-            <span className="quiz-section-label">YOUR PROGRESS</span>
-
-            <p className="quiz-progress-count">
-              <span>{answeredCount}</span>
-              <span className="quiz-progress-divider">/</span>
-              {questions.length} answered
-            </p>
-          </div>
-
-          <span className="quiz-progress-percentage">
-            {Math.round(percentage)}%
-          </span>
-        </div>
-
-        {/* Actual progress bar */}
-        <div
-          className="quiz-progress-track"
-          role="progressbar"
-          aria-valuenow={Math.round(percentage)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-label="Quiz completion"
-        >
-          <div
-            className="quiz-progress-fill"
-            style={{ width: `${percentage}%` }}
-          />
-        </div>
+      {/* Main progress */}
+      <section className="mb-8 w-full min-w-0 rounded-xl border border-[#263341] bg-[#0F1923] p-4 sm:mb-10 sm:p-8">
+        <ProgressBar
+          progress={percentage}
+          ansCount={answeredCount}
+          totalQuestions={questions.length}
+        />
       </section>
 
-      <section className="quiz-questions-section">
+      {/* Questions */}
+      <section className="quiz-questions-section min-w-0">
         <div className="quiz-section-heading">
-          <div>
+          <div className="min-w-0">
             <span className="quiz-section-label">THE ASSESSMENT</span>
             <h2>Know your game.</h2>
             <p>
@@ -212,12 +223,12 @@ export default function QuizPage({ questions }) {
             </p>
           </div>
 
-          <span className="quiz-question-total">
+          <span className="quiz-question-total shrink-0">
             {String(questions.length).padStart(2, "0")} QUESTIONS
           </span>
         </div>
 
-        <div className="quiz-question-list">
+        <div className="quiz-question-list min-w-0">
           {questions.map((question, index) => {
             const answer = selectedAnswers[question.display_order];
             const isAnswered = Boolean(answer);
@@ -234,20 +245,22 @@ export default function QuizPage({ questions }) {
                     map.delete(question.id);
                   }
                 }}
-                className={`quiz-question-card ${
+                className={`quiz-question-card min-w-0 ${
                   isAnswered ? "is-answered" : ""
                 }`}
               >
-                <div className="quiz-question-heading">
-                  <span className="quiz-question-number">
+                <div className="quiz-question-heading min-w-0">
+                  <span className="quiz-question-number shrink-0">
                     {String(question.display_order).padStart(2, "0")}
                   </span>
 
-                  <p className="quiz-question-text">{question.question_text}</p>
+                  <p className="quiz-question-text min-w-0">
+                    {question.question_text}
+                  </p>
 
                   {isAnswered && (
                     <span
-                      className="quiz-answered-indicator"
+                      className="quiz-answered-indicator shrink-0"
                       aria-label="Question answered"
                       title="Answered"
                     >
@@ -256,14 +269,14 @@ export default function QuizPage({ questions }) {
                   )}
                 </div>
 
-                <div className="quiz-response-area">
+                <div className="quiz-response-area min-w-0">
                   <div className="quiz-scale-labels">
                     <span>NOT LIKELY</span>
                     <span>MOST LIKELY</span>
                   </div>
 
                   <div
-                    className="quiz-options"
+                    className="quiz-options min-w-0"
                     role="group"
                     aria-label={`Response for question ${question.display_order}`}
                   >
@@ -276,7 +289,7 @@ export default function QuizPage({ questions }) {
                         <label
                           key={value}
                           htmlFor={inputId}
-                          className={`quiz-option ${
+                          className={`quiz-option min-h-11 min-w-0 ${
                             isSelected ? "is-selected" : ""
                           }`}
                         >
@@ -305,8 +318,9 @@ export default function QuizPage({ questions }) {
         </div>
       </section>
 
+      {/* Bottom panel */}
       <section className="quiz-bottom-panel">
-        <div>
+        <div className="min-w-0">
           <span className="quiz-section-label">READY TO FIND YOUR TYPE?</span>
 
           <h2>
@@ -324,7 +338,7 @@ export default function QuizPage({ questions }) {
 
         <button
           type="button"
-          className="quiz-submit-button"
+          className="quiz-submit-button min-h-11 w-full sm:w-auto"
           onClick={() => handleSubmit()}
         >
           Submit Answers <span aria-hidden="true">↗</span>

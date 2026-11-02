@@ -7,37 +7,88 @@ export default function ResultShareCard({ results }) {
   const rersultCardRef = useRef(null);
   return (
     <>
-      <div className="absolute w-0 h-0 overflow-hidden pointer-events-none -z-50">
+      <div className="pointer-events-none absolute -z-50 h-0 w-0 overflow-hidden">
         <div
           ref={rersultCardRef}
-          className="w-100 h-200 flex flex-col gap-6 justify-center items-center border-2 border-amber-400 bg-zinc-900 p-6 rounded-3xl"
+          className="flex h-200 w-125 flex-col items-center justify-between gap-6 border-2 border-[#FF4655] bg-[#080B10] p-8 text-center text-[#ECE8E1]"
         >
-          <h1>ValoTraits</h1>
-          <div className="flex flex-col items-center border border-green-300 p-4 rounded-2xl">
-            <h2>{results.codenames}</h2>
-            <span>{results.personality_name}</span>
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#00F5D4]">
+              YOUR PLAYSTYLE. DECODED.
+            </p>
+
+            <h1 className="mt-3 text-4xl font-extrabold uppercase tracking-wider">
+              VALO<span className="text-[#FF4655]">TRAITS</span>
+            </h1>
           </div>
-          <div className="bg-sky-300 py-2 px-4 text-zinc-900 font-extrabold rounded-2xl shadow-md shadow-sky-500">
-            <h4>{results.top_role}</h4>
+
+          <div className="w-full border border-[#263341] bg-[#0F1923] p-6">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-[#A5ADB7]">
+              Personality profile
+            </p>
+
+            <h2 className="text-3xl font-extrabold uppercase text-[#FF4655]">
+              {results.codenames}
+            </h2>
+
+            <p className="mt-3 text-lg font-semibold text-[#ECE8E1]">
+              {results.personality_name}
+            </p>
           </div>
-          <div className="flex flex-col items-center border border-green-300 p-4 rounded-2xl">
-            <h4>Top Agent</h4>
-            <span>{results.top_agent}</span>
+
+          <div className="w-full border border-[#00F5D4]/40 bg-[#00F5D4]/10 px-5 py-4">
+            <p className="mb-2 font-mono text-xs uppercase tracking-widest text-[#A5ADB7]">
+              Recommended role
+            </p>
+
+            <h3 className="text-2xl font-bold text-[#00F5D4]">
+              {results.top_role}
+            </h3>
           </div>
-          <div className="flex flex-col px-4 items-center text-center">
-            <p>{results.traits.playstyle} </p>
-            <div className="flex mt-4 gap-2">
-              <span className="border border-green-300 p-4 rounded-2xl">
-                <h4>Strength - </h4>
-                {results.traits.strengths}{" "}
-              </span>
-              <span className="border border-green-300 p-4 rounded-2xl">
-                <h4>Weakness - </h4>
-                {results.traits.weaknesses}{" "}
-              </span>
+
+          <div className="w-full border border-[#263341] p-5">
+            <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#A5ADB7]">
+              Top agent
+            </p>
+
+            <h4 className="text-2xl font-bold text-[#ECE8E1]">
+              {results.top_agent}
+            </h4>
+          </div>
+
+          <div className="w-full">
+            <p className="text-sm leading-6 text-[#ECE8E1]">
+              {results.traits.playstyle}
+            </p>
+
+            <div className="mt-5 grid grid-cols-2 gap-3 text-left">
+              <div className="border border-[#263341] bg-[#0F1923] p-4">
+                <h4 className="mb-2 font-mono text-xs uppercase tracking-wider text-[#00F5D4]">
+                  Strength
+                </h4>
+
+                <p className="text-sm leading-5 text-[#ECE8E1]">
+                  {results.traits.strengths}
+                </p>
+              </div>
+
+              <div className="border border-[#263341] bg-[#0F1923] p-4">
+                <h4 className="mb-2 font-mono text-xs uppercase tracking-wider text-[#FF4655]">
+                  Weakness
+                </h4>
+
+                <p className="text-sm leading-5 text-[#ECE8E1]">
+                  {results.traits.weaknesses}
+                </p>
+              </div>
             </div>
           </div>
-          <span className="text-red-800 text-xs">ValoTraits</span>
+
+          <div className="w-full border-t border-[#263341] pt-4">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#A5ADB7]">
+              ValoTraits / Discover your playstyle
+            </p>
+          </div>
         </div>
       </div>
 

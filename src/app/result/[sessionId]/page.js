@@ -43,11 +43,8 @@ export default async function ResultPage({ params }) {
     console.log("Result : ", resultsData)
 
     return (
-        <>
-            <h1>This is the result Page</h1>
-            <ResultCard
-                results={resultsData}
-            />
-        </>
-    )
+        <main className="mx-auto w-full min-w-0 max-w-7xl overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+            <ResultCard results={resultsData} />
+        </main>
+    );
 }

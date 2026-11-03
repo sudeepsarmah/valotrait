@@ -89,10 +89,28 @@ export default function ActionButtons({ results, cardRef }) {
   };
 
   return (
-    <>
-      <button onClick={handleCopy}>{iscopied ? "Copied" : "Copy Link"}</button>
-      <button onClick={handleShareText}>Share</button>
-      <button onClick={generatePreview}>Download Result Card</button>
+    <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 mt-4">
+      <button
+        onClick={handleCopy}
+        className="min-h-11 w-full rounded-lg border border-[#263341] bg-[#0F1923] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#ECE8E1] transition-all duration-200 hover:border-[#00F5D4] hover:text-[#00F5D4] sm:w-auto"
+      >
+        {iscopied ? "Copied" : "Copy Link"}
+      </button>
+
+      <button
+        onClick={handleShareText}
+        className="min-h-11 w-full rounded-lg border border-[#263341] bg-[#0F1923] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#ECE8E1] transition-all duration-200 hover:border-[#00F5D4] hover:text-[#00F5D4] sm:w-auto"
+      >
+        Share
+      </button>
+
+      <button
+        onClick={generatePreview}
+        className="min-h-11 w-full rounded-lg bg-[#FF4655] px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:bg-[#E83B49] sm:w-auto"
+      >
+        Download Result Card
+      </button>
+
       {isOpen && (
         <ResultPreviewModal
           onClose={() => setIsOpen(false)}
@@ -100,7 +118,13 @@ export default function ActionButtons({ results, cardRef }) {
           dataUrl={previewImg}
         />
       )}
-      <button onClick={handleRetake}>Retake Quiz</button>
-    </>
+
+      <button
+        onClick={handleRetake}
+        className="min-h-11 w-full rounded-lg border border-[#263341] bg-transparent px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#A5ADB7] transition-all duration-200 hover:border-[#FF4655] hover:text-[#FF4655] sm:ml-auto sm:w-auto"
+      >
+        Retake Quiz
+      </button>
+    </div>
   );
 }

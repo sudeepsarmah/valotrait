@@ -26,15 +26,14 @@ export default async function Home() {
     // }
 
     return (
-        <>
-            <div>
-                <h2>This is the quiz page</h2>
-                <p>{user ? `Signed in as ${user.email}` : "Not signed in"}</p>
-                <QuizPage
-                    questions={questionsData}
-                />
-
+        <div className="w-full min-w-0">
+            <div className="mx-auto w-full max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
+                <p className="mb-2 wrap-break-word text-xs text-[#A5ADB7] sm:text-sm">
+                    {user ? `Signed in as ${user.email}` : "Not signed in"}
+                </p>
             </div>
-        </>
-    )
+
+            <QuizPage questions={questionsData} />
+        </div>
+    );
 }

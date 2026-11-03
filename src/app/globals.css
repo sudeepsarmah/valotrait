@@ -216,6 +216,99 @@ main {
   background: var(--color-primary-hover);
 }
 
+/* Navbar layout */
+.site-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.nav-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+}
+
+.nav-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Explicit visibility controls */
+.site-nav .nav-cta-mobile {
+  display: inline-flex !important;
+}
+
+.site-nav .nav-cta-desktop {
+  display: none !important;
+}
+
+.site-nav .nav-user-desktop {
+  display: none !important;
+}
+
+.site-nav .nav-user-status {
+  display: block !important;
+  margin-top: 10px;
+  color: var(--text-muted, #b7bec6);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Desktop */
+@media (min-width: 640px) {
+  .site-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand-row {
+    width: auto;
+  }
+
+  .site-nav .nav-cta-mobile {
+    display: none !important;
+  }
+
+  .nav-content {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .nav-actions {
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .site-nav .nav-cta-desktop {
+    display: inline-flex !important;
+  }
+
+  .site-nav .nav-user-desktop {
+    display: inline !important;
+  }
+
+  .site-nav .nav-user-status {
+    display: none !important;
+  }
+}
 /* =========================================
    BUTTONS
 ========================================= */

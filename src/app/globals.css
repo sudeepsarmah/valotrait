@@ -117,6 +117,7 @@ main {
    NAVBAR
 ========================================= */
 
+/* Site header */
 .site-header {
   position: sticky;
   top: 0;
@@ -126,16 +127,6 @@ main {
   background: rgba(11, 15, 20, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-}
-
-.site-nav {
-  width: min(var(--page-width), calc(100% - 64px));
-  min-height: 76px;
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
 }
 
 .nav-brand {
@@ -218,11 +209,14 @@ main {
 
 /* Navbar layout */
 .site-nav {
+  width: min(var(--page-width), calc(100% - 64px));
+  min-height: 76px;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
   gap: 12px;
-  width: 100%;
-  min-width: 0;
 }
 
 .nav-brand-row {
@@ -277,6 +271,7 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
   }
 
   .nav-brand-row {

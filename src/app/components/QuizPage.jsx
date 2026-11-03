@@ -159,7 +159,7 @@ export default function QuizPage({ questions }) {
     <main className="quiz-page w-full min-w-0 overflow-x-clip">
       {/* Floating progress */}
       <div
-        className={`fixed inset-x-0 top-0 z-[100] border-b border-[#263341] bg-[#080B10]/95 px-4 py-3 shadow-lg backdrop-blur-md transition-all duration-300 sm:px-8 ${
+        className={`floating-progress fixed inset-x-0 z-90 border-b border-[#263341] bg-[#080B10]/95 px-4 py-3 shadow-lg backdrop-blur-md transition-all duration-300 sm:px-8 ${
           showFloatingProgress
             ? "translate-y-0 opacity-100"
             : "-translate-y-full pointer-events-none opacity-0"

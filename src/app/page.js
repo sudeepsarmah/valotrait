@@ -1,6 +1,16 @@
 import Link from "next/link";
 import { createClient } from "@/supabase/server";
 
+
+export const metadata = {
+  title: "ValoTraits — Discover Your Valorant Personality",
+  description: "Take a 44-question personality assessment to discover your Valorant playstyle, personality type, and recommended agents.",
+  openGraph: {
+    title: "ValoTraits — Discover Your Valorant Personality",
+    description: "Take a 44-question personality assessment to discover your Valorant playstyle, personality type, and recommended agents.",
+  }
+}
+
 export default async function Home() {
   const supabase = await createClient();
   const { data: personalities, error } = await supabase

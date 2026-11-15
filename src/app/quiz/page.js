@@ -1,6 +1,15 @@
 import { createClient } from "../../supabase/server"
 import QuizPage from "../components/QuizPage"
 
+export const metadata = {
+    title: "ValoTraits — Discover Your Valorant Personality in 44 Questions",
+    description: "Answer 44 questions to discover your Valorant playstyle, personality type, and the role that best matches your approach to the game.",
+    openGraph: {
+        title: "ValoTraits — Discover Your Valorant Personality in 44 Questions",
+        description: "Answer 44 questions to discover your Valorant playstyle, personality type, and the role that best matches your approach to the game."
+    }
+}
+
 
 export default async function Home() {
     const supabase = await createClient()
@@ -16,14 +25,6 @@ export default async function Home() {
 
     console.log("Server user:", user?.email);
     console.log("Server auth error:", error?.message);
-    // console.log(questionsData[0].question_text)
-
-    // if (questionsError) {
-    //     console.log(questionsError.message)
-    // }
-    // if (!questionsData?.length) {
-    //     console.log("No questions returned")
-    // }
 
     return (
         <div className="w-full min-w-0">

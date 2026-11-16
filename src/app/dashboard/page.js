@@ -4,6 +4,14 @@ import ResultSummaryCard from "./ResultSummaryCard"
 import Link from "next/link"
 import DistributionBarChart from "../components/recharts/DistributionBarChart"
 
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  }
+}
+
 export default async function Dashboard() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

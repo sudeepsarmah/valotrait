@@ -15,11 +15,13 @@ export async function generateMetadata({ params }) {
         return
     }
 
+    const playstyle = resultsData?.traits?.playstyle;
+
     return {
-        title: resultsData.codenames,
+        title: `${resultsData.codenames} - Your Valorant Personality | ValoTraits`,
         openGraph: {
-            title: resultsData.codenames,
-            description: `${resultsData.codenames} on ValoTraits - ${resultsData.recommended_role}`
+            title: `${resultsData.codenames} - Your Valorant Personality | ValoTraits`,
+            description: `${playstyle}. Explore your playstyle, strengths, and Valorant personality on ValoTraits.`
         }
     }
 }

@@ -140,9 +140,6 @@ export default function QuizPage({ questions }) {
       localStorage.setItem("valotraits_claim_token", claimToken);
     }
 
-    // console.log("Personality Row :", personalityRow)
-
-    // navigate("/result")
     console.log("Session Id - ", sessionId);
     router.push(`/result/${savedResult.session_id}`);
   };

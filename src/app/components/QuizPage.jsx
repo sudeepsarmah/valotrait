@@ -92,7 +92,7 @@ export default function QuizPage({ questions }) {
     } = await supabase.auth.getUser();
     const userId = user?.id ?? null;
     const claimToken = userId ? null : crypto.randomUUID();
-    const traitScores = calculateTraitScores(answers, questions);
+    const traitScores = calculateTraitScores(selectedAnswers, questions);
     const personalityCode = generatePersonalityCode(traitScores);
     const personalityRow = await getPersonality(personalityCode);
     console.log("Personality Row - ", personalityRow);

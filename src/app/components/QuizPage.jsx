@@ -84,24 +84,6 @@ export default function QuizPage({ questions }) {
   };
 
   const handleSubmit = async () => {
-    const answers = {
-      1: 1,
-      2: 1,
-      3: 1,
-      4: 1,
-      14: 1,
-      15: 1,
-      17: 4,
-      19: 4,
-      25: 5,
-      26: 5,
-      28: 5,
-      29: 5,
-      34: 1,
-      35: 1,
-      38: 1,
-      39: 2,
-    };
     const sessionId = crypto.randomUUID();
 
     const supabase = await createClient();

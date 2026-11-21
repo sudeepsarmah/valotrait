@@ -31,9 +31,7 @@ export default async function Dashboard() {
   }
 
   // generating the data for the DistributionBarChart.jsx
-  console.log("personality_codes : ", results[0].personality_code)
-
-  // creting the object to hold the count of each Personality_Code
+  // creating the object to hold the count of each Personality_Code
   const personalityCodeCounts = results.reduce((accumulator, currentValue) => {
     if (!accumulator[currentValue.personality_code]) {
       accumulator[currentValue.personality_code] = 0
@@ -83,6 +81,18 @@ export default async function Dashboard() {
           <span aria-hidden="true">↗</span>
         </Link>
       </div>
+
+      {results.length === 0 && (
+        <div>
+          <h2>No Data // Yet</h2>
+          <p>Your story starts with your first test.</p>
+          <span>You have not completed a personality test yet. Take the quiz to discove your playstyle, personality and agent compatibility</span>
+          <Link href="/quiz">
+            <span aria-hidden="true">↗</span>
+            <span>Take the personality test</span>
+          </Link>
+        </div>
+      )}
 
       {/* Result cards */}
       <section className="mb-10 min-w-0 sm:mb-12">

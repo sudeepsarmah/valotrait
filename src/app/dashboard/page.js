@@ -77,65 +77,88 @@ export default async function Dashboard() {
           href="/quiz"
           className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#FF4655] bg-[#FF4655] px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all duration-200 hover:border-[#E83B49] hover:bg-[#E83B49] sm:w-fit"
         >
-          <span>Retake Test</span>
+          {results.length === 0 ? <span>Take Test</span> : <span>Retake Test</span>}
           <span aria-hidden="true">↗</span>
         </Link>
       </div>
 
-      {results.length === 0 && (
+      {results.length === 0 ? (
         <div>
-          <h2>No Data // Yet</h2>
-          <p>Your story starts with your first test.</p>
-          <span>You have not completed a personality test yet. Take the quiz to discove your playstyle, personality and agent compatibility</span>
-          <Link href="/quiz">
-            <span aria-hidden="true">↗</span>
-            <span>Take the personality test</span>
-          </Link>
-        </div>
-      )}
+          <div className="flex flex-col gap-4">
+            <h2 className="font-[var(--font-heading)] text-xl font-bold uppercase tracking-wide text-[#ECE8E1] sm:text-2xl">No Data // Yet</h2>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#00F5D4] sm:text-xs">Your story starts with your first test.</p>
+            <span className="font-mono text-[10px] text-[#A5ADB7] sm:text-xs">You have not completed a personality test yet. Take the quiz to discover your playstyle, personality and agent compatibility.</span>
+            <br />
+          </div>
+          {/* Personality distribution  */}
+          <section className="min-w-0 mt-6 overflow-hidden rounded-xl border border-[#263341] bg-[#0F1923] p-3 sm:rounded-2xl sm:p-7">
+            <div className="mb-5 border-b border-[#263341] pb-4 sm:mb-6 sm:pb-5">
+              <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#00F5D4]">
+                Analytics
+              </p>
 
-      {/* Result cards */}
-      <section className="mb-10 min-w-0 sm:mb-12">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
-          <h2 className="font-[var(--font-heading)] text-xl font-bold uppercase tracking-wide text-[#ECE8E1] sm:text-2xl">
-            Previous Attempts
-          </h2>
+              <h2 className="break-words font-[var(--font-heading)] text-xl font-bold uppercase tracking-wide text-[#ECE8E1] sm:text-2xl">
+                Personality Distribution
+              </h2>
 
-          <span className="font-mono text-[10px] text-[#A5ADB7] sm:text-xs">
-            {results.length} RECORDS
-          </span>
-        </div>
+              <p className="mt-1 text-xs leading-5 text-[#A5ADB7] sm:text-sm">
+                Breakdown of your personality types across previous attempts.
+              </p>
+            </div>
 
-        <div className="grid min-w-0 grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {results.map((result) => (
-            <ResultSummaryCard
-              key={result.session_id}
-              results={result}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Personality distribution */}
-      <section className="min-w-0 overflow-hidden rounded-xl border border-[#263341] bg-[#0F1923] p-3 sm:rounded-2xl sm:p-7">
-        <div className="mb-5 border-b border-[#263341] pb-4 sm:mb-6 sm:pb-5">
-          <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#00F5D4]">
-            Analytics
-          </p>
-
-          <h2 className="break-words font-[var(--font-heading)] text-xl font-bold uppercase tracking-wide text-[#ECE8E1] sm:text-2xl">
-            Personality Distribution
-          </h2>
-
-          <p className="mt-1 text-xs leading-5 text-[#A5ADB7] sm:text-sm">
-            Breakdown of your personality types across previous attempts.
-          </p>
+            <div className="w-full min-w-0">
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#00F5D4] sm:text-xs">No data to show right now, take a test first!!</p>
+            </div>
+          </section>
         </div>
 
-        <div className="w-full min-w-0">
-          <DistributionBarChart data={distributionData} />
-        </div>
-      </section>
+      ) :
+        ( /* Result cards */
+          <div>
+            <section className="mb-10 min-w-0 sm:mb-12">
+              <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
+                <h2 className="font-[var(--font-heading)] text-xl font-bold uppercase tracking-wide text-[#ECE8E1] sm:text-2xl">
+                  Previous Attempts
+                </h2>
+
+                <span className="font-mono text-[10px] text-[#A5ADB7] sm:text-xs">
+                  {results.length} RECORDS
+                </span>
+              </div>
+
+              <div className="grid min-w-0 grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {results.map((result) => (
+                  <ResultSummaryCard
+                    key={result.session_id}
+                    results={result}
+                  />
+                ))}
+              </div>
+            </section>
+
+            {/* Personality distribution */}
+            <section className="min-w-0 overflow-hidden rounded-xl border border-[#263341] bg-[#0F1923] p-3 sm:rounded-2xl sm:p-7">
+              <div className="mb-5 border-b border-[#263341] pb-4 sm:mb-6 sm:pb-5">
+                <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#00F5D4]">
+                  Analytics
+                </p>
+
+                <h2 className="break-words font-[var(--font-heading)] text-xl font-bold uppercase tracking-wide text-[#ECE8E1] sm:text-2xl">
+                  Personality Distribution
+                </h2>
+
+                <p className="mt-1 text-xs leading-5 text-[#A5ADB7] sm:text-sm">
+                  Breakdown of your personality types across previous attempts.
+                </p>
+              </div>
+
+              <div className="w-full min-w-0">
+                <DistributionBarChart data={distributionData} />
+              </div>
+            </section>
+          </div>
+        )
+      }
     </main>
   );
 }

@@ -22,7 +22,7 @@ export default function ResultCard({ results }) {
                 </p>
 
                 <h2 className="wrap-break-word text-2xl font-bold leading-tight text-[#ECE8E1] sm:text-3xl">
-                  {results.personality_name}
+                  {results.codenames}
                 </h2>
               </div>
 
@@ -38,7 +38,7 @@ export default function ResultCard({ results }) {
                 </p>
 
                 <p className="wrap-break-word text-base font-semibold text-[#ECE8E1] sm:text-lg">
-                  {results.codenames}
+                  {results.personality_name}
                 </p>
               </div>
 

@@ -18,7 +18,6 @@ export default function ActionButtons({ results, cardRef }) {
       setTimeout(() => {
         setIsCopied(false);
       }, 5000);
-      console.log("URL copied successfully.", url);
     } catch (err) {
       console.log("Failed to copy URL: ", err);
     }
@@ -32,11 +31,6 @@ export default function ActionButtons({ results, cardRef }) {
     const shareMessage = `${text} 
         
         ${cta} ${url}`;
-    // console.log("ShareMessage : ", shareMessage)
-
-    console.log(text);
-    console.log(results.top_agent);
-
     // checking navigator.share first if the browser supports it
     try {
       if (navigator.share) {

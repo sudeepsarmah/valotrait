@@ -40,10 +40,6 @@ export default async function ResultPage({ params }) {
         console.log("Error fetching the results from Supabase", error.message)
         return
     }
-
-    // console.log("Result ID : ", id)
-    console.log("Result : ", resultsData)
-
     return (
         <main className="mx-auto w-full min-w-0 max-w-7xl overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
             <ResultCard results={resultsData} />

@@ -25,12 +25,7 @@ const calculateTraitScores = (selectedAnswers, questions) => {
         const weights = optionsWeight[answer]
         traitScore[question.left_trait] += weights.left_trait
         traitScore[question.right_trait] += weights.right_trait
-        console.log("display_order - ", question.display_order)
-        console.log("selected_answer - ", answer)
-
     }
-
-    console.log(traitScore)
     return traitScore
 }
 
@@ -86,8 +81,6 @@ const generatePersonalityCode = (traitScore) => {
             personalityCode += traitPair.right_code
         }
     }
-
-    console.log("Personality Code - ", personalityCode)
     return personalityCode
 }
 
@@ -100,9 +93,6 @@ const getPersonality = async (personalityCode) => {
         .eq("code", personalityCode)
         .single()
     // only select the personality row that matches the generated code
-    console.log("Personality code:", personalityCode)
-    console.log("Personality data:", personalityRow)
-    console.log("Personality error:", personalityError)
     if (personalityError) {
         return null
     }
@@ -143,8 +133,6 @@ const buildResult = (personalityRow, traitScores) => {
 
 const saveResult = async (resultObject, sessionId, userId, claimToken) => {
     const topAgentDetails = getTopAgent(resultObject)
-    console.log("recommended/personality.js: ", topAgentDetails.role)
-    console.log("highestAgent/personality.js: ", topAgentDetails.agent)
     const supabase = createClient()
     const { data: resultsData, error: resultsError } = await supabase
         .from("results")

@@ -16,8 +16,6 @@ export default function TraitChart({ data }) {
     return { subject: trait, score: score };
   });
 
-  console.log(chartData);
-
   return (
     <div className="h-[320px] w-full min-w-0 sm:h-[380px] md:h-[420px]">
       <ResponsiveContainer width="100%" height="100%">

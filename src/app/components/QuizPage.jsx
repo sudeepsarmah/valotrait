@@ -70,17 +70,10 @@ export default function QuizPage({ questions }) {
     const scrollToNextIndex = getNextUnansweredQuestion(updatedState, index);
 
     if (scrollToNextIndex == null) {
-      console.log("All questions answered");
       return;
     }
 
     handleScroll(scrollToNextIndex);
-
-    // TODO:
-    // Investigate whether scrolling should happen in useLayoutEffect instead of immediately after setState.
-
-    console.log("Question ID -", index);
-    console.log("Selected Option - ", e.target.value);
   };
 
   const handleSubmit = async () => {
@@ -95,15 +88,11 @@ export default function QuizPage({ questions }) {
     const traitScores = calculateTraitScores(selectedAnswers, questions);
     const personalityCode = generatePersonalityCode(traitScores);
     const personalityRow = await getPersonality(personalityCode);
-    console.log("Personality Row - ", personalityRow);
     if (!personalityRow) {
       console.log("Unable to find personality");
       return;
     }
     const resultObject = buildResult(personalityRow, traitScores);
-
-    console.log("Result object:", resultObject);
-
     const savedResult = await saveResult(
       resultObject,
       sessionId,
@@ -111,7 +100,6 @@ export default function QuizPage({ questions }) {
       claimToken,
     );
 
-    console.log("Saved result:", savedResult);
     if (!savedResult) {
       console.log("Couldn't find result, please check database");
       return;
@@ -121,18 +109,11 @@ export default function QuizPage({ questions }) {
       localStorage.setItem("valotraits_session_id", sessionId);
       localStorage.setItem("valotraits_claim_token", claimToken);
     }
-
-    console.log("Session Id - ", sessionId);
     router.push(`/result/${savedResult.session_id}`);
   };
 
   const answeredCount = Object.keys(selectedAnswers).length;
   const percentage = (answeredCount / questions.length) * 100;
-
-  // debugging
-  console.log("Count - ", answeredCount);
-  console.log("Percentage - ", percentage);
-  console.log("Radio options - ", selectedAnswers);
 
   return (
     <main className="quiz-page w-full min-w-0 overflow-x-clip">

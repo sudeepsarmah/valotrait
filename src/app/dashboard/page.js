@@ -49,12 +49,6 @@ export default async function Dashboard() {
   })
 
 
-  console.log("Dashboard")
-  console.log(results);
-  console.log(resultsError);
-  console.log(personalityCodeCounts)
-  console.log(distributionData)
-
   return (
     <main className="mx-auto w-full min-w-0 max-w-7xl overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
       {/* Page heading */}

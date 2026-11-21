@@ -12,8 +12,6 @@ export default function EmailResults({ sessionId }) {
   };
 
   const handleSubmit = async () => {
-    console.log("sessionId:", sessionId);
-    console.log("email:", email);
     if (!email) {
       return;
     }

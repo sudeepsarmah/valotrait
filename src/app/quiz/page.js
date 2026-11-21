@@ -22,8 +22,6 @@ export default async function Home() {
         data: { user },
         error,
     } = await supabase.auth.getUser();
-
-    console.log("Server user:", user?.email);
     console.log("Server auth error:", error?.message);
 
     return (
